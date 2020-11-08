@@ -16,19 +16,11 @@ class PDFWatermarker {
 	private $_watermark;
 	private $_specificPages;
 	
-	/**
-	 * Creates an instance of the watermarker
-	 *
-	 * @param string $originalPDF - inputted PDF path
-	 * @param string $newPDF - outputted PDF path
-	 * @param mixed $watermark Watermark - watermark object
-	 *
-	 * @return void
-	 */
-	public function __construct($originalPdf,$newPdf,$watermark) {
+	public function __construct(string $originalPdfPath,string $newPdfPath,PDFWatermark $watermark)
+	{
 		
-		$this->_originalPdf = $originalPdf;
-		$this->_newPdf = $newPdf;
+		$this->_originalPdf = $originalPdfpath;
+		$this->_newPdf = $newPdfPath;
 		$this->_tempPdf = new FPDI();
 		$this->_watermark = $watermark;
 		$this->_specificPages = array();
@@ -38,12 +30,7 @@ class PDFWatermarker {
 	}
 
 	
-	/**
-	 * Ensures that the watermark and the PDF file are valid
-	 *
-	 * @return void
-	 */
-	private function _validateAssets() {
+	private function _validateAssets():void {
 		
 		if ( !file_exists( $this->_originalPdf ) ) {
 			throw new Exception("Inputted PDF file doesn't exist");
@@ -54,12 +41,8 @@ class PDFWatermarker {
 		
 	}
 	
-	/**
-	 * Loop through the pages while applying the watermark
-	 *
-	 * @return void
-	 */
-	private function _updatePDF() {
+
+	private function _updatePDF():void {
 		
 		$totalPages = $this->_getTotalPages();
 		
@@ -68,33 +51,22 @@ class PDFWatermarker {
 			$this->_importPage($ctr);
 			
 			if ( in_array($ctr, $this->_specificPages ) || empty( $this->_specificPages ) ) {
-				$this->_watermarkPage($ctr);
+				$this->_watermarkOnSpecificPage($ctr);
 			}
 			else {
-				$this->_watermarkPage($ctr, false);
+				$this->_watermarkOnSpecificPage($ctr, false);
 			}
 			
 		}
 		
 	}
 	
-	/*
-	 * Get total number of pages
-	 *
-	 * @return int 
-	 */
-	private function _getTotalPages() {
+	
+	private function _getTotalPages():int {
 		return $this->_tempPdf->setSourceFile($this->_originalPdf);
 	}
-	
-	/**
-	 * Import page
-	 *
-	 * @param int $page_number - page number
-	 *
-	 * @return void
-	 */
-	private function _importPage($page_number) {
+
+	private function _importPage(int $page_number):void {
 		
 		$templateId = $this->_tempPdf->importPage($page_number);
 		$templateDimension = $this->_tempPdf->getTemplateSize($templateId);
@@ -110,15 +82,8 @@ class PDFWatermarker {
 		
 	}
 	
-	/**
-	 * Apply the watermark to a specific page
-	 *
-	 * @param int $page_number - page number
-	 * @param bool $watermark_visible - (optional) Make the watermark visible. True by default.
-	 *
-	 * @return void
-	 */
-	private function _watermarkPage($page_number, $watermark_visible = true) {
+
+	private function _watermarkOnSpecificPage(int $page_number, bool $watermark_visible = true):void {
 		
 		$templateId = $this->_tempPdf->importPage($page_number);
 		$templateDimension = $this->_tempPdf->getTemplateSize($templateId);
@@ -147,17 +112,8 @@ class PDFWatermarker {
 		
 	}
 	
-	/**
-	 * Calculate the coordinates of the watermark's position 
-	 *
-	 * @param int $wWidth - watermark's width
-	 * @param int $wHeight - watermark's height
-	 * @param int $tWidth - page width
-	 * @param int $Height -page height
-	 *
-	 * @return array - coordinates of the watermark's position
-	 */
-	private function _calculateWatermarkCoordinates( $wWidth, $wHeight, $tWidth, $tHeight ) {
+
+	private function _calculateWatermarkCoordinates( int $wWidth, int $wHeight, int $tWidth, int $tHeight ):array {
 		
 		switch( $this->_watermark->getPosition() ) {
 			case 'topleft': 
@@ -185,15 +141,8 @@ class PDFWatermarker {
 		return array($x,$y);
 	}
 	
-	/**
-	 * Set page range
-	 *
-	 * @param int $startPage - the first page to be watermarked
-	 * @param int $endPage - (optional) the last page to be watermarked
-	 *
-	 * @return void
-	 */
-	public function setPageRange($startPage=1, $endPage=null) {
+	
+	public function setPageRange(int $startPage=1, int $endPage=null):void{
 		
 		$end = $endPage !== null ? $endPage : $this->_getTotalPages();
 		
@@ -205,13 +154,7 @@ class PDFWatermarker {
 		
 	}
 	 
-	
-	/**
-	 * Save the PDF to the specified location
-	 *
-	 * @return void
-	 */
-	public function savePdf() {
+	public function savePdf():void {
 		$this->_updatePDF();
 		$this->_tempPdf->Output("F",$this->_newPdf);
 	}

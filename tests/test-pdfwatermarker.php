@@ -11,18 +11,18 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 
     function setUp() {
 		
-		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
-		
-        $this->watermark = new PDFWatermark( $this->_assets_directory . "star.png" );
+		    $this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
+        $filepath=$this->_assets_directory . 'star.png';
+        $this->watermark = PDFWatermark::contructCenterOverlay(  new ImageWatermark($filepath));
 
         $this->output =  $this->_assets_directory . "test-output.pdf";
-		$this->output_multiple =  $this->_assets_directory . "test-output-multiple.pdf";
+		    $this->output_multiple =  $this->_assets_directory . "test-output-multiple.pdf";
 		
-		$input = $this->_assets_directory . "test.pdf";
-		$input_multiple = $this->_assets_directory . "test-multipage.pdf";
+        $input = $this->_assets_directory . "test.pdf";
+        $input_multiple = $this->_assets_directory . "test-multipage.pdf";
 
         $this->watermarker = new PDFWatermarker( $input, $this->output, $this->watermark); 
-		$this->watermarker_multiple = new PDFWatermarker( $input_multiple, $this->output_multiple, $this->watermark); 
+		    $this->watermarker_multiple = new PDFWatermarker( $input_multiple, $this->output_multiple, $this->watermark); 
 		
     }
 	
@@ -30,14 +30,15 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 		
         $this->watermarker->savePdf(); 
         $this->assertTrue( file_exists($this->output) === true );
-		$this->assertTrue( filesize( $this->_assets_directory . "output-default-position.pdf") === filesize($this->output) );
+		    $this->assertTrue( filesize( $this->_assets_directory . "output-default-position.pdf") === filesize($this->output) );
 
     }
 	
     public function testDefaultOptionsWithJPG() {
-		
-		$watermark_jpg = new PDFWatermark( $this->_assets_directory . 'star.jpg');
-		$watermarker_jpg = new PDFWatermarker( $this->_assets_directory . 'test.pdf', $this->output, $watermark_jpg); 
+      $filepath=$this->_assets_directory . 'star.png';
+      $watermark_jpg = PDFWatermark::contructCenterOverlay(  new ImageWatermark($filepath));
+	
+		  $watermarker_jpg = new PDFWatermarker( $this->_assets_directory . 'test.pdf', $this->output, $watermark_jpg); 
 		
         $watermarker_jpg->savePdf(); 
         $this->assertTrue( file_exists($this->output) === true );
