@@ -1,15 +1,13 @@
 
 <?php
 class ImageWatermark {
-    private const JPG='IMAGETYPE_JPEG';
-    private const PNG='IMAGETYPE_PNG';
 	private $file;
 	private $height;
     private $width;
 
     public function __construct(string $filePath) {
         $this->file = $this->_prepareImage($filePath);
-        $this->_getImageSize( $this->_file );
+        $this->_getImageSize( $this->file );
 
 
     }
@@ -45,12 +43,11 @@ class ImageWatermark {
 	{
 		$imagetype = exif_imagetype( $filePath );
 		switch( $imagetype ) {
-			
-			case self::JPG:
+			case IMAGETYPE_JPEG:
                 $path=$this->prepareJpg($filePath);
                 break;
 				
-			case self::PNG:
+			case IMAGETYPE_PNG:
                 $path=$this->preparePng($filePath);
 				break;
 			default:

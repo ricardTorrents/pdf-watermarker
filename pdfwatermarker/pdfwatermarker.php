@@ -1,4 +1,5 @@
 <?php
+use setasign\Fpdi\Fpdi;
 /**
  * pdfwatermarker.php
  * 

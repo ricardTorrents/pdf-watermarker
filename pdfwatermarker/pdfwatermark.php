@@ -13,53 +13,49 @@
 class PDFWatermark {
 
 	private $imageWatermark;
-	private $_position;
-	private $_asBackground;
+	private $position;
+	private $asBackground;
 	
-
+	/**
+	 * Comentar si es mejor named constructor o valores default
+	 */
 	public function __construct(ImageWatermark $imageWatermark, string $position, bool $asbackground) {
 
 		$this->$imageWatermark=$imageWatermark;
-		$this->_position = $position;
-		$this->_asBackground = $asbackground;
+		$this->position = $position;
+		$this->asBackground = $asbackground;
 	}
-	
+
 	public static function contructCenterOverlay(ImageWatermark $imageWatermark):PDFWatermark 
 	{
 		return new self($imageWatermark,'center',false);
 	}
-	
 
-	
-
-	
 	public function setPosition(string $position):void 
 	{
-		$this->_position = $position;
+		$this->position = $position;
 	}
-	
 
 	public function setAsBackground():void
 	{
-		$this->_asBackground = true;
+		$this->asBackground = true;
 	}
 	
-
 	public function setAsOverlay():void
 	{
-		$this->_asBackground = false;
+		$this->asBackground = false;
 	}
 	
 	
 	public function usedAsBackground():bool 
 	{
-		return $this->_asBackground;
+		return $this->asBackground;
 	}
 	
 	
 	public function getPosition():string
 	{
-		return $this->_position;
+		return $this->position;
 	}
 
 	public function getFilePath():string 
