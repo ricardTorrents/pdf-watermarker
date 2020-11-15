@@ -1,5 +1,6 @@
-
 <?php
+
+
 //position 'center','topright', 'topleft', 'bottomright', 'bottomleft'
 /**
  * pdfwatermark.php
@@ -15,20 +16,19 @@ class PDFWatermark {
 	private $imageWatermark;
 	private $position;
 	private $asBackground;
-	
-	/**
-	 * Comentar si es mejor named constructor o valores default
-	 */
+
 	public function __construct(ImageWatermark $imageWatermark, string $position, bool $asbackground) {
 
-		$this->$imageWatermark=$imageWatermark;
+		$this->imageWatermark=$imageWatermark;
 		$this->position = $position;
 		$this->asBackground = $asbackground;
 	}
 
+	/** Dejamos este constructor simplemente para dar Semantica a la construccion */
 	public static function contructCenterOverlay(ImageWatermark $imageWatermark):PDFWatermark 
 	{
-		return new self($imageWatermark,'center',false);
+		
+		return new self($imageWatermark,PositionEnum::CENTER,false);
 	}
 
 	public function setPosition(string $position):void 
@@ -76,3 +76,4 @@ class PDFWatermark {
 		return $this->imageWatermark->getWidth();
 	}
 }
+?>

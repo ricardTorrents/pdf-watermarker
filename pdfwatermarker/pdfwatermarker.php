@@ -1,5 +1,7 @@
 <?php
+
 use setasign\Fpdi\Fpdi;
+
 /**
  * pdfwatermarker.php
  * 
@@ -11,16 +13,19 @@ use setasign\Fpdi\Fpdi;
 
 class PDFWatermarker {
 	
-	private $_originalPdf;
+	private $originalPdf;
 	private $_newPdf;
 	private $_tempPdf;
 	private $_watermark;
 	private $_specificPages;
 	
 	public function __construct(string $originalPdfPath,string $newPdfPath,PDFWatermark $watermark)
-	{
-		
-		$this->_originalPdf = $originalPdfpath;
+	{	
+	
+
+		$this->originalPdf = $originalPdfpath;
+	
+	
 		$this->_newPdf = $newPdfPath;
 		$this->_tempPdf = new FPDI();
 		$this->_watermark = $watermark;
@@ -29,14 +34,13 @@ class PDFWatermarker {
 		
 		$this->_validateAssets();
 	}
-
 	
 	private function _validateAssets():void {
-		
-		if ( !file_exists( $this->_originalPdf ) ) {
+		$result=file_exists( $this->originalPdf );
+		if ($result!=1) {
 			throw new Exception("Inputted PDF file doesn't exist");
 		}
-		else if ( !file_exists( $this->_watermark->getFilePath() ) ) {
+		else if (! file_exists( $this->_watermark->getFilePath()!=1 ) ) {
 			throw new Exception("Watermark doesn't exist.");
 		}
 		
@@ -95,8 +99,7 @@ class PDFWatermarker {
 		$watermarkCoords = $this->_calculateWatermarkCoordinates( 	$wWidth, 
 																	$wHeight, 
 																	$templateDimension['w'], 
-																	$templateDimension['h']);
-							
+																	$templateDimension['h']);					
 		if ( $watermark_visible ) {
 			if ( $this->_watermark->usedAsBackground() ) {															
 				$this->_tempPdf->Image($this->_watermark->getFilePath(),$watermarkCoords[0],$watermarkCoords[1],-96);

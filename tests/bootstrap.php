@@ -8,9 +8,12 @@ require PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 
 //Load project files
 $classes = array(
-	"pdfwatermark.php",
+	"models/pdfwatermark.php",
 	"pdfwatermarker.php",
-	"imageWatermark.php"
+	"models/ImageWatermark.php",
+	"models/value_objects/PositionEnum.php",
+	"repositoris/FpdiPdfRepository.php",
+	"insertAWatermark.php"
 );
 
 foreach( $classes as $class ) {

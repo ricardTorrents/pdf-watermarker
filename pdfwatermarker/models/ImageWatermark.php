@@ -1,17 +1,24 @@
-
 <?php
 class ImageWatermark {
+    const TEST='test';
 	private $file;
 	private $height;
     private $width;
 
     public function __construct(string $filePath) {
-        $this->file = $this->_prepareImage($filePath);
+        $this->file = $this->prepareImage($filePath);
+        $this->vaildatePath();
         $this->_getImageSize( $this->file );
 
-
     }
-
+    private function vaildatePath():void
+    {   
+        $result=file_exists( $this->file );
+        if ( $result !=1 ) {
+			throw new Exception("Image doesn't exist.");
+        }
+        
+    }
     private function _getImageSize(string $image):void {
 		$is = getimagesize($image);
 		$this->width = $is[0];
@@ -39,7 +46,8 @@ class ImageWatermark {
         return $path;
 
     }
-    private function _prepareImage(string $filePath):string 
+
+    private function prepareImage(string $filePath):string 
 	{
 		$imagetype = exif_imagetype( $filePath );
 		switch( $imagetype ) {
@@ -61,7 +69,7 @@ class ImageWatermark {
 	{
 		return $this->file;
 	}
-    public function getWith():int 
+    public function getWidth():int 
     {
         return $this->width;
     }
@@ -71,3 +79,4 @@ class ImageWatermark {
     }
 
 }
+?>

@@ -5,15 +5,17 @@ $parent_directory = dirname(__FILE__);
 class PDFWatermark_test extends PHPUnit_Framework_TestCase
 {
     public $watermark;
-    public $output;
+	public $output;
+	public $imageWatermark;
 	
 	protected $_assets_directory;
 
     function setUp() {
-		
+	
 		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
 		$filepath=$this->_assets_directory . 'star.png';
-        $this->watermark = PDFWatermark::contructCenterOverlay( new ImageWatermark($filepath));
+		$this->imageWatermark=new ImageWatermark($filepath);
+        $this->watermark = PDFWatermark::contructCenterOverlay($this->imageWatermark);
 
     }
 	
@@ -46,21 +48,21 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	}
 
 	public function testPrepareImagePng() {
-		$class = new ReflectionClass('PDFWatermark');
-		$method = $class->getMethod('_prepareImage');
+		$class = new ReflectionClass('ImageWatermark');
+		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
-  		$fileExtension = substr($method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.png']), -4);
+  		$fileExtension = substr($method->invokeArgs($this->imageWatermark, [ $this->_assets_directory . 'star.png']), -4);
 
   		$this->assertSame('.png', $fileExtension);
 	}
 
 	public function testPrepareImageJpg() {
-		$class = new ReflectionClass('PDFWatermark');
-		$method = $class->getMethod('_prepareImage');
+		$class = new ReflectionClass('ImageWatermark');
+		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
-  		$fileExtension = substr($method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.jpg']), -4);
+  		$fileExtension = substr($method->invokeArgs($this->imageWatermark, [ $this->_assets_directory . 'star.jpg']), -4);
 
   		$this->assertSame('.jpg', $fileExtension);
 	}
@@ -70,11 +72,11 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
      * @expectedExceptionMessage Unsupported image type
      */
 	public function testPrepareImageInvalidImage() {
-		$class = new ReflectionClass('PDFWatermark');
-		$method = $class->getMethod('_prepareImage');
+		$class = new ReflectionClass('ImageWatermark');
+		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
-  		$fileExtension = $method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.tif']);
+  		$fileExtension = $method->invokeArgs($this->imageWatermark, [ $this->_assets_directory . 'star.tif']);
 	}
 	
 }
