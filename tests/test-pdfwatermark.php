@@ -14,7 +14,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	
 		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
 		$filepath=$this->_assets_directory . 'star.png';
-		$this->imageWatermark=new ImageWatermark($filepath);
+		$this->imageWatermark=new PNGImageWatermark($filepath);
         $this->watermark = PDFWatermark::contructCenterOverlay($this->imageWatermark);
 
     }
@@ -48,7 +48,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	}
 
 	public function testPrepareImagePng() {
-		$class = new ReflectionClass('ImageWatermark');
+		$class = new ReflectionClass('PNGImageWatermark');
 		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
@@ -58,7 +58,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	}
 
 	public function testPrepareImageJpg() {
-		$class = new ReflectionClass('ImageWatermark');
+		$class = new ReflectionClass('PNGImageWatermark');
 		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
@@ -72,7 +72,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
      * @expectedExceptionMessage Unsupported image type
      */
 	public function testPrepareImageInvalidImage() {
-		$class = new ReflectionClass('ImageWatermark');
+		$class = new ReflectionClass('PNGImageWatermark');
 		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 

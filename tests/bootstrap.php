@@ -10,7 +10,8 @@ require PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 $classes = array(
 	"models/pdfwatermark.php",
 	"pdfwatermarker.php",
-	"models/ImageWatermark.php",
+	"models/ImageWatermarkPNG.php",
+	"models/ImageWatermarkJPG.php",
 	"models/value_objects/PositionEnum.php",
 	"repositoris/FpdiPdfRepository.php",
 	"insertAWatermark.php"
