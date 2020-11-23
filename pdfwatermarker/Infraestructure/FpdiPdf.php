@@ -2,7 +2,7 @@
 use setasign\Fpdi\Fpdi;
 
 include('PdfRepository.php');
-class FpdiPdfRepository implements PdfRepository  
+class FpdiPdf implements Pdf, PdfWrite
 {
     private $path;
     private $tmpPdf;
@@ -27,15 +27,15 @@ class FpdiPdfRepository implements PdfRepository
         return $this->tmpPdf;
     }
 
-    public function updateTmpPdfPage(array $watermarkCoords,Watermark $watermark,$page_number):void {
+    public function updateTmpPdfPage(Coordinates $watermarkCoords,Watermark $watermark,$page_number):void {
              
 		if ( $watermark->usedAsBackground() ) {															
-            $this->tmpPdf->Image($watermark->getFilePath(),$watermarkCoords[0],$watermarkCoords[1],-96);
+            $this->tmpPdf->Image($watermark->getFilePath(),$watermarkCoords->getX(),$watermarkCoords->getY(),-96);
             $this->useTemplate($page_number);
         }
         else {
             $this->useTemplate($page_number);
-            $this->tmpPdf->Image($watermark->getFilePath(),$watermarkCoords[0],$watermarkCoords[1],-96);
+            $this->tmpPdf->Image($watermark->getFilePath(),$watermarkCoords->getX(),$watermarkCoords->getY(),-96);
         }
     }
 
@@ -74,7 +74,7 @@ class FpdiPdfRepository implements PdfRepository
 		return $this->n_pages;
     }
     
-    public function writeOnFile(string $outputPath):void 
+    public function writeOnFile(string $outputPath ):void 
     {
         $this->tmpPdf->Output("F",$outputPath);
 

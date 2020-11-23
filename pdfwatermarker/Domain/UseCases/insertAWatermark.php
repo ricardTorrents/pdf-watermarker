@@ -14,34 +14,7 @@ class InsertAWatermark {
 
     }
 
-    private function _calculateWatermarkCoordinates( int $wWidth, int $wHeight, int $tWidth, int $tHeight ):array 
-    {
-		
-		switch( $this->_watermark->getPosition() ) {
-			case 'topleft': 
-				$x = 0;
-				$y = 0;
-				break;
-			case 'topright':
-				$x = $tWidth - $wWidth;
-				$y = 0;
-				break;
-			case 'bottomright':
-				$x = $tWidth - $wWidth;
-				$y = $tHeight - $wHeight;
-				break;
-			case 'bottomleft':
-				$x = 0;
-				$y = $tHeight - $wHeight;
-				break;
-			default:
-				$x = ( $tWidth - $wWidth ) / 2 ;
-				$y = ( $tHeight - $wHeight ) / 2 ;
-				break;
-		}
-		
-		return array($x,$y);
-    }
+    
     private function watermarkOnSpecificPage(int $page_number):void
     {
         
@@ -51,7 +24,7 @@ class InsertAWatermark {
 		$wWidth = ($this->watermark->getWidth() / 96) * 25.4; //in mm
 		$wHeight = ($this->watermark->getHeight() / 96) * 25.4; //in mm
         
-		$watermarkCoords = $this->_calculateWatermarkCoordinates( 	$wWidth, 
+		$watermarkCoords = new Cordinates( $this->_watermark->getPosition(), $wWidth, 
 																	$wHeight, 
 																	$templateDimension['w'], 
                                                                     $templateDimension['h']);					
