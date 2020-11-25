@@ -1,5 +1,7 @@
 <?php
 
+
+
 class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 {
     public $watermark;
@@ -10,24 +12,24 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 	protected $_assets_directory;
 
     function setUp() {
-		
-		    $this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
+     
+        $this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
+        
         $filepath=$this->_assets_directory . 'star.png';
-        $this->watermark = PDFWatermark::contructCenterOverlay(  new ImageWatermark($filepath));
+        $this->watermark = PDFWatermark::contructCenterOverlay(  new PNGImageWatermark($filepath));
 
         $this->output =  $this->_assets_directory . "test-output.pdf";
 		    $this->output_multiple =  $this->_assets_directory . "test-output-multiple.pdf";
 		
-        $input = $this->_assets_directory . "test.pdf";
+        $input = $this->_assets_directory."test.pdf";
         $input_multiple = $this->_assets_directory . "test-multipage.pdf";
-
         $this->watermarker = new PDFWatermarker( $input, $this->output, $this->watermark); 
 		    $this->watermarker_multiple = new PDFWatermarker( $input_multiple, $this->output_multiple, $this->watermark); 
 		
     }
 	
     public function testDefaultOptions() {
-		
+        echo $this->watermarker->getPath();
         $this->watermarker->savePdf(); 
         $this->assertTrue( file_exists($this->output) === true );
 		    $this->assertTrue( filesize( $this->_assets_directory . "output-default-position.pdf") === filesize($this->output) );
@@ -36,7 +38,7 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 	
     public function testDefaultOptionsWithJPG() {
       $filepath=$this->_assets_directory . 'star.png';
-      $watermark_jpg = PDFWatermark::contructCenterOverlay(  new ImageWatermark($filepath));
+      $watermark_jpg = PDFWatermark::contructCenterOverlay(  new PNGImageWatermark($filepath));
 	
 		  $watermarker_jpg = new PDFWatermarker( $this->_assets_directory . 'test.pdf', $this->output, $watermark_jpg); 
 		

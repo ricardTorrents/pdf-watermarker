@@ -1,34 +1,33 @@
-
 <?php
-class ImageWatermark {
+include('ImageWatermark.php');
+class JPGImageWatermark implements ImageWatermark
+{
 	private $file;
 	private $height;
     private $width;
 
     public function __construct(string $filePath) {
-        $this->file = $this->_prepareImage($filePath);
+        $this->file = $this->prepareImage($filePath);
+        $this->vaildatePath();
         $this->_getImageSize( $this->file );
 
-
     }
-
+    private function vaildatePath():void
+    {   
+        $result=file_exists( $this->file );
+        if ( $result !=1 ) {
+			throw new Exception("Image doesn't exist.");
+        }
+        
+    }
     private function _getImageSize(string $image):void {
 		$is = getimagesize($image);
 		$this->width = $is[0];
 		$this->height = $is[1];
 	}
 	
-    private function preparePng(string $filePath):string 
-    {
-        $path =  sys_get_temp_dir() . '/' . uniqid() . '.png';
-		$image = imagecreatefrompng($filePath);
-		imageinterlace($image,false);
-		imagesavealpha($image,true);
-		imagepng($image, $path);
-        imagedestroy($image);
-        return $path;
-
-    }
+   
+    
     private function prepareJpg(string $filePath):string 
     {
         $path =  sys_get_temp_dir() . '/' . uniqid() . '.jpg'; 
@@ -39,21 +38,14 @@ class ImageWatermark {
         return $path;
 
     }
-    private function _prepareImage(string $filePath):string 
+
+    public function prepareImage(string $filePath):string 
 	{
-		$imagetype = exif_imagetype( $filePath );
-		switch( $imagetype ) {
-			case IMAGETYPE_JPEG:
-                $path=$this->prepareJpg($filePath);
-                break;
-				
-			case IMAGETYPE_PNG:
-                $path=$this->preparePng($filePath);
-				break;
-			default:
-				throw new Exception("Unsupported image type");
-				break;
-		};
+        $imagetype = exif_imagetype( $filePath );
+        if( $imagetype != IMAGETYPE_JPG ){
+            throw new Exception("Unsupported image type");
+        }
+        $path=$this->prepareJpg($filePath);
 		return $path;
     }
     
@@ -61,7 +53,7 @@ class ImageWatermark {
 	{
 		return $this->file;
 	}
-    public function getWith():int 
+    public function getWidth():int 
     {
         return $this->width;
     }
@@ -71,3 +63,4 @@ class ImageWatermark {
     }
 
 }
+?>
