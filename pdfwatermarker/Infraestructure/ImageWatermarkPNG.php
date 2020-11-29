@@ -1,5 +1,5 @@
 <?php
-include('ImageWatermark.php');
+
 class PNGImageWatermark implements ImageWatermark 
 {
 	private $file;

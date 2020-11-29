@@ -22,7 +22,7 @@ class INSERTWATERMARK_test extends PHPUnit_Framework_TestCase
         $this->watermark = PDFWatermark::contructCenterOverlay($this->imageWatermark);
         $input = $this->_assets_directory."test-multipage.pdf";
         $this->output =  $this->_assets_directory . "test-output-multiline.pdf";
-        $this->inputPdf = FpdiPdfRepository::pdf($input);
+        $this->inputPdf = FpdiPdf::pdf($input);
         $this->insertWatermark = new InsertAWatermark($this->inputPdf,$this->watermark);
         $outPutPdf=$this->insertWatermark->insert();
         $this->$outPutPdf->writeOnFile($this->output);

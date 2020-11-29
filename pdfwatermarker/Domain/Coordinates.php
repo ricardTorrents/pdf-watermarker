@@ -32,6 +32,8 @@ class Coordinates
         }
     }
 
+    
+
     /**
      * @return float
      */

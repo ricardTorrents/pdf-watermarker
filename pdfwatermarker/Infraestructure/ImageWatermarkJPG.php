@@ -1,11 +1,11 @@
 <?php
-include('ImageWatermark.php');
+include('../Domain/Interfaces/ImageWatermark.php');
 class JPGImageWatermark implements ImageWatermark
 {
 	private $file;
 	private $height;
     private $width;
-
+    const INCHES_FACTOR=25.4;
     public function __construct(string $filePath) {
         $this->file = $this->prepareImage($filePath);
         $this->vaildatePath();
