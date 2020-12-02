@@ -18,7 +18,7 @@ class INSERTWATERMARK_test extends PHPUnit_Framework_TestCase
 	
 		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
 		$filepath=$this->_assets_directory . 'star.png';
-		$this->imageWatermark=new PNGImageWatermark($filepath);
+		$this->imageWatermark=new ImageWatermarkPNG($filepath);
         $this->watermark = PDFWatermark::contructCenterOverlay($this->imageWatermark);
         $input = $this->_assets_directory."test-multipage.pdf";
         $this->output =  $this->_assets_directory . "test-output-multiline.pdf";

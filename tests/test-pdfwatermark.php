@@ -14,7 +14,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	
 		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
 		$filepath=$this->_assets_directory . 'star.png';
-		$this->imageWatermark=new PNGImageWatermark($filepath);
+		$this->imageWatermark=new ImageWatermarkPNG($filepath);
         $this->watermark = PDFWatermark::contructCenterOverlay($this->imageWatermark);
 
     }

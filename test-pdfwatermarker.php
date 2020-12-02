@@ -16,7 +16,7 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
         $this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
         
         $filepath=$this->_assets_directory . 'star.png';
-        $this->watermark = PDFWatermark::contructCenterOverlay(  new PNGImageWatermark($filepath));
+        $this->watermark = PDFWatermark::contructCenterOverlay(  new ImageWatermarkPNG($filepath));
 
         $this->output =  $this->_assets_directory . "test-output.pdf";
 		    $this->output_multiple =  $this->_assets_directory . "test-output-multiple.pdf";
@@ -38,7 +38,7 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 	
     public function testDefaultOptionsWithJPG() {
       $filepath=$this->_assets_directory . 'star.png';
-      $watermark_jpg = PDFWatermark::contructCenterOverlay(  new PNGImageWatermark($filepath));
+      $watermark_jpg = PDFWatermark::contructCenterOverlay(  new ImageWatermarkPNG($filepath));
 	
 		  $watermarker_jpg = new PDFWatermarker( $this->_assets_directory . 'test.pdf', $this->output, $watermark_jpg); 
 		
