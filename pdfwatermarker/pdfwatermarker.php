@@ -8,6 +8,8 @@
  * @license https://opensource.org/licenses/MIT MIT
  */
 
+use setasign\Fpdi\Fpdi;
+
 class PDFWatermarker {
 	
 	private $_originalPdf;
@@ -99,14 +101,14 @@ class PDFWatermarker {
 		$templateId = $this->_tempPdf->importPage($page_number);
 		$templateDimension = $this->_tempPdf->getTemplateSize($templateId);
 		
-		if ( $templateDimension['w'] > $templateDimension['h'] ) {
+		if ( $templateDimension['width'] > $templateDimension['height'] ) {
 			$orientation = "L";
 		}
 		else {
 			$orientation = "P";
 		}
 		
-		$this->_tempPdf->addPage($orientation,array($templateDimension['w'],$templateDimension['h']));
+		$this->_tempPdf->addPage($orientation,array($templateDimension['width'],$templateDimension['height']));
 		
 	}
 	
@@ -128,8 +130,8 @@ class PDFWatermarker {
 		
 		$watermarkCoords = $this->_calculateWatermarkCoordinates( 	$wWidth, 
 																	$wHeight, 
-																	$templateDimension['w'], 
-																	$templateDimension['h']);
+																	$templateDimension['width'],
+																	$templateDimension['height']);
 							
 		if ( $watermark_visible ) {
 			if ( $this->_watermark->usedAsBackground() ) {															
