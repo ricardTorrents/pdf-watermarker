@@ -2,6 +2,8 @@
 
 $parent_directory = dirname(__FILE__);
 
+use Watermarker\Domain\Models\PDFWatermark;
+
 class PDFWatermark_test extends PHPUnit_Framework_TestCase
 {
     public $watermark;
@@ -10,11 +12,8 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	protected $_assets_directory;
 
     function setUp() {
-		
-		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
-		
+        $this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
         $this->watermark = new PDFWatermark( $this->_assets_directory . 'star.png');
-
     }
 	
     public function testSetPosition() {
@@ -46,7 +45,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	}
 
 	public function testPrepareImagePng() {
-		$class = new ReflectionClass('PDFWatermark');
+		$class = new ReflectionClass('Watermarker\Domain\Models\PDFWatermark');
 		$method = $class->getMethod('_prepareImage');
 		$method->setAccessible(true);
 
@@ -56,7 +55,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 	}
 
 	public function testPrepareImageJpg() {
-		$class = new ReflectionClass('PDFWatermark');
+		$class = new ReflectionClass('Watermarker\Domain\Models\PDFWatermark');
 		$method = $class->getMethod('_prepareImage');
 		$method->setAccessible(true);
 
@@ -69,12 +68,11 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
      * @expectedException Exception
      * @expectedExceptionMessage Unsupported image type
      */
-	public function testPrepareImageInvalidImage() {
-		$class = new ReflectionClass('PDFWatermark');
+    public function testPrepareImageInvalidImage() {
+		$class = new ReflectionClass('Watermarker\Domain\Models\PDFWatermark');
 		$method = $class->getMethod('_prepareImage');
 		$method->setAccessible(true);
-
-  		$fileExtension = $method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.tif']);
+  		$method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.tif']);
 	}
 	
 }

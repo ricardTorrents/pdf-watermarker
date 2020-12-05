@@ -1,12 +1,16 @@
 <?php
 /**
- * pdfwatermark.php
+ * PDFWatermark.php
  * 
  * This class defines properties of a watermark
  * @author Binarystash <binarystash01@gmail.com>
  * @version 1.1.1
  * @license https://opensource.org/licenses/MIT MIT
  */
+
+namespace Watermarker\Domain\Models;
+
+use Exception;
 
 class PDFWatermark {
 
@@ -35,7 +39,7 @@ class PDFWatermark {
 	/**
 	 * Configure or check the image's properties 
 	 *
-	 * @return void
+	 * @return string
 	 */
 	private function _prepareImage($file) {
 		
@@ -61,7 +65,6 @@ class PDFWatermark {
 				break;
 			default:
 				throw new Exception("Unsupported image type");
-				break;
 		};
 		
 		return $path;

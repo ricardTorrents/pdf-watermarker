@@ -1,9 +1,13 @@
 <?php
 
+use Watermarker\Domain\Models\PDFWatermark;
+use Watermarker\PDFWatermarker;
+
 class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 {
     public $watermark;
     public $watermarker;
+    public $watermarker_multiple;
     public $output;
 	public $output_multiple;
 	
@@ -21,7 +25,7 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
 		$input = $this->_assets_directory . "test.pdf";
 		$input_multiple = $this->_assets_directory . "test-multipage.pdf";
 
-        $this->watermarker = new PDFWatermarker( $input, $this->output, $this->watermark); 
+        $this->watermarker = new PDFWatermarker( $input, $this->output, $this->watermark);
 		$this->watermarker_multiple = new PDFWatermarker( $input_multiple, $this->output_multiple, $this->watermark); 
 		
     }

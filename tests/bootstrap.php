@@ -3,15 +3,8 @@
 //Define constants
 define( "PACKAGE_DIRECTORY", dirname( __DIR__ ) );
 
-//Load composer packages
-require PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "vendor/autoload.php";
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
 
-//Load project files
-$classes = array(
-	"pdfwatermark.php",
-	"pdfwatermarker.php"
-);
-
-foreach( $classes as $class ) {
-	require_once PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "pdfwatermarker" . DIRECTORY_SEPARATOR . $class;
-}
+require 'vendor/autoload.php';
