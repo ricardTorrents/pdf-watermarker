@@ -129,7 +129,7 @@ class PDFWatermarker {
 		return array($x, $y);
 	}
 
-	public function setPageRange(int $startPage=1, int $endPage=null) : void {
+	public function setPageRange(int $startPage=1, ?int $endPage=null) : void {
 
 		$end = $endPage !== null ? $endPage : $this->getTotalPages();
 

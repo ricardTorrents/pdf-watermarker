@@ -8,8 +8,12 @@ require PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 
 //Load project files
 $classes = array(
+	"Application/CreateWatermarkImage.php",
+	"Domain/DimensionsMm.php",
+	"Domain/Image.php",
+	"Domain/ImageImpl.php",
 	"pdfwatermark.php",
-	"pdfwatermarker.php"
+	"pdfwatermarker.php",
 );
 
 foreach( $classes as $class ) {
