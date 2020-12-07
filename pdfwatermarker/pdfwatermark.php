@@ -1,61 +1,41 @@
 <?php
-/**
- * pdfwatermark.php
- * 
- * This class defines properties of a watermark
- * @author Binarystash <binarystash01@gmail.com>
- * @version 1.1.1
- * @license https://opensource.org/licenses/MIT MIT
- */
 
 class PDFWatermark {
 
-	private $_file;
-	private $_height;
-	private $_width;
-	private $_position;
-	private $_asBackground;
-	
-	/**
-	 * Creates an instance of the watermark
-	 *
-	 * @param string $file - path to the image file
-	 *
-	 * @return void
-	 */
-	function __construct($file) {
+	private string $file;
+	private int $height;
+	private int $width;
+	private string $position;
+	private bool $asBackground;
 
-		$this->_file = $this->_prepareImage($file);
-		$this->_getImageSize( $this->_file );
-		
-		$this->_position = 'center';
-		$this->_asBackground = false;
+	function __construct(string $file) {
+
+		$this->file = $this->prepareImage($file);
+		$this->getImageSize($this->file);
+
+		$this->position = 'center';
+		$this->asBackground = false;
 	}
-	
-	/**
-	 * Configure or check the image's properties 
-	 *
-	 * @return void
-	 */
-	private function _prepareImage($file) {
-		
-		$imagetype = exif_imagetype( $file );
-		
-		switch( $imagetype ) {
-			
+
+	private function prepareImage(string $file) : string {
+
+		$imagetype = exif_imagetype($file);
+
+		switch($imagetype) {
+
 			case IMAGETYPE_JPEG:
-				$path =  sys_get_temp_dir() . '/' . uniqid() . '.jpg'; 
+				$path =  sys_get_temp_dir() . '/' . uniqid() . '.jpg';
 				$image = imagecreatefromjpeg($file);
-				imageinterlace($image,false);
+				imageinterlace($image, false);
 				imagejpeg($image, $path);
 				imagedestroy($image);
 				break;
-				
+
 			case IMAGETYPE_PNG:
 				$path =  sys_get_temp_dir() . '/' . uniqid() . '.png';
 				$image = imagecreatefrompng($file);
-				imageinterlace($image,false);
-				imagesavealpha($image,true);
+				imageinterlace($image, false);
+				imagesavealpha($image, true);
 				imagepng($image, $path);
 				imagedestroy($image);
 				break;
@@ -63,93 +43,46 @@ class PDFWatermark {
 				throw new Exception("Unsupported image type");
 				break;
 		};
-		
+
 		return $path;
-		
+
 	}
-	
-	/**
-	 * Assess the watermark's dimensions
-	 *
-	 * @return void
-	 */
-	private function _getImageSize($image) {
+
+	private function getImageSize(string $image) : void {
 		$is = getimagesize($image);
-		$this->_width = $is[0];
-		$this->_height = $is[1];
+		$this->width = $is[0];
+		$this->height = $is[1];
 	}
-	
-	/**
-	 * Set the watermark's position
-	 *
-	 * @param string $position -  'center','topright', 'topleft', 'bottomright', 'bottomleft'
-	 *
-	 * @return void
-	 */
-	public function setPosition($position) {
-		$this->_position = $position;
+
+	public function setPosition(string $position) : void {
+		$this->position = $position;
 	}
-	
-	/**
-	 * Apply the watermark below the PDF's content
-	 *
-	 * @return void
-	 */
-	public function setAsBackground() {
-		$this->_asBackground = true;
+
+	public function setAsBackground() : void {
+		$this->asBackground = true;
 	}
-	
-	/**
-	 * Apply the watermark over the PDF's content
-	 *
-	 * @return void
-	 */
-	public function setAsOverlay() {
-		$this->_asBackground = false;
+
+	public function setAsOverlay() : void {
+		$this->asBackground = false;
 	}
-	
-	/**
-	 * Checks if the watermark is used as a background
-	 *
-	 * @return bool
-	 */
-	public function usedAsBackground() {
-		return $this->_asBackground;
+
+	public function usedAsBackground() : bool {
+		return $this->asBackground;
 	}
-	
-	/**
-	 * Returns the watermark's position
-	 *
-	 * @return string
-	 */
-	public function getPosition() {
-		return $this->_position;
+
+	public function getPosition() : string {
+		return $this->position;
 	}
-	
-	/**
-	 * Returns the watermark's file path
-	 *
-	 * @return string
-	 */
-	public function getFilePath() {
-		return $this->_file;
+
+	public function getFilePath() : string {
+		return $this->file;
 	}
-	
-	/**
-	 * Returns the watermark's height
-	 *
-	 * @return int
-	 */
-	public function getHeight() {
-		return $this->_height;
+
+	public function getHeight() : int {
+		return $this->height;
 	}
-	
-	/**
-	 * Returns the watermark's width
-	 *
-	 * @return int
-	 */
-	public function getWidth() {
-		return $this->_width;
+
+	public function getWidth() : int {
+		return $this->width;
 	}
 }

@@ -47,7 +47,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 
 	public function testPrepareImagePng() {
 		$class = new ReflectionClass('PDFWatermark');
-		$method = $class->getMethod('_prepareImage');
+		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
   		$fileExtension = substr($method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.png']), -4);
@@ -57,7 +57,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 
 	public function testPrepareImageJpg() {
 		$class = new ReflectionClass('PDFWatermark');
-		$method = $class->getMethod('_prepareImage');
+		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
   		$fileExtension = substr($method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.jpg']), -4);
@@ -71,7 +71,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
      */
 	public function testPrepareImageInvalidImage() {
 		$class = new ReflectionClass('PDFWatermark');
-		$method = $class->getMethod('_prepareImage');
+		$method = $class->getMethod('prepareImage');
 		$method->setAccessible(true);
 
   		$fileExtension = $method->invokeArgs($this->watermark, [ $this->_assets_directory . 'star.tif']);
