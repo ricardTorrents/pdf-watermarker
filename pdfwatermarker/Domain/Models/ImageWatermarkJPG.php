@@ -1,5 +1,5 @@
 <?php
-include('../Domain/ImageWatermark.php');
+include('ImageWatermark.php');
 
 class ImageWatermarkJPG extends ImageWatermark
 {

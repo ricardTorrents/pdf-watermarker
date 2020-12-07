@@ -2,7 +2,7 @@
 
 interface PdfInsertWatermark
 {
-    public function getTotalPages(): int;
+    public function getTotalPages(): int; // revisar
 
     public function watermarkOnSpecificPage(int $pageNumber, PDFWatermark $watemark): void;
 

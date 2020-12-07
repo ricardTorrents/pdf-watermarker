@@ -3,8 +3,8 @@
 
 class Coordinates
 {
-    private float $x;
-    private float $y;
+    private  $x;
+    private  $y;
 
     public function __construct(string $position, int $pageWidth, int $pageHeight, int $watermarkWidth, mixe $watermarkHeight)
     {

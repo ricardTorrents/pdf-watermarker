@@ -1,6 +1,6 @@
 <?php
-include('../../Domain/Interfaces/IImageWatermark.php');
 
+include("pdfwatermarker/Domain/Interfaces/IImageWatermark.php");
 
 abstract class ImageWatermark implements IImageWatermark
 {
@@ -53,4 +53,5 @@ abstract class ImageWatermark implements IImageWatermark
 
 }
 
-?>
+
+

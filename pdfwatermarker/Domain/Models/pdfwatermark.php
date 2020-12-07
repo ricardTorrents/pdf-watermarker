@@ -1,5 +1,5 @@
 <?php
-include('../../Domain/Interfaces/IImageWatermark.php');
+
 
 
 //position 'center','topright', 'topleft', 'bottomright', 'bottomleft'
@@ -15,7 +15,7 @@ include('../../Domain/Interfaces/IImageWatermark.php');
 class PDFWatermark
 {
 
-    private IImageWatermark $imageWatermark;
+    private $imageWatermark;
     private $position;
     private $asBackground;
 
@@ -74,4 +74,4 @@ class PDFWatermark
 
 }
 
-?>
+

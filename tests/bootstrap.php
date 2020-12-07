@@ -8,16 +8,16 @@ require PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 
 //Load project files
 $classes = array(
-	"Domain/pdfwatermark.php",
-	"Domain/Interfaces/ImageWatermark.php",
+	"Domain/Models/Pdfwatermark.php",
+	"Domain/Interfaces/IImageWatermark.php",
 	"Domain/Interfaces/PdfInsertWatermark.php",
-	"Domain/Interfaces/PdfWrite.php",
-	"pdfwatermarker.php",
-	"Infraestructure/ImageWatermarkPNG.php",
-	"Infraestructure/ImageWatermarkJPG.php",
-	"Domain/value_objects/PositionEnum.php",
+	"Domain/Interfaces/PDFRepository.php",
+	"Domain/Models/ImageWatermarkPNG.php",
+	"Domain/Models/ImageWatermarkJPG.php",
+	"Domain/ValueObjects/PositionEnum.php",
+	"Domain/ValueObjects/Coordinates.php",
 	"Infraestructure/FpdiPdf.php",
-	"Domain/UseCases/insertAWatermark.php",
+	"Aplication/insertAWatermark.php",
 );
 
 foreach( $classes as $class ) {
