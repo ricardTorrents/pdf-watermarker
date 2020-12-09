@@ -1,8 +1,6 @@
 <?php
-
-include("pdfwatermarker/Domain/Interfaces/IImageWatermark.php");
-
-abstract class ImageWatermark implements IImageWatermark
+include('../../Domain/Interfaces/IImageWatermark.php');
+abstract class ImageWatermark implements IImaggeWatermark
 {
     protected $file;
     protected $height;

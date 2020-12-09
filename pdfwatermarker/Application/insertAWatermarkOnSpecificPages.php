@@ -7,7 +7,7 @@ class InsertAWatermarkOnSpecificPages {
     private $specificPages;
     private $outputPath;
 
-    public function __construct(PdfInsertWatermark $pdf,PDFWatermark $watermark, string $outputPath,array $specificPages)
+    public function __construct(PdfInsertWatermark $pdf,IPdfWatermark $watermark, string $outputPath,array $specificPages)
 	{	
         $this->pdf=$pdf;
         $this->watermark=$watermark;
@@ -20,16 +20,7 @@ class InsertAWatermarkOnSpecificPages {
    
     public function insert()
     {
-        $totalPages = $this->pdf->getTotalPages();
-        for($ctr = 1; $ctr <= $totalPages; $ctr++){
-          
-            if ( in_array($ctr, $this->specificPages ) ){
-				$this->pdf->watermarkOnSpecificPage($ctr,$this->watermark);
-			}else{
-                $this->pdf->no_insertOnThisPage($ctr);
-              
-            }
-        }
+        $this->pdf->insertInSpecificPages($this->watermark,$this->specificPages);
        //Save Pdf
         
     } 

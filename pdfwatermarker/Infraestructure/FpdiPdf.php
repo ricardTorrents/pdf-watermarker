@@ -31,19 +31,35 @@ class FpdiPdf implements PdfInsertWatermark
         return $this->tmpPdf;
     }
 
-
-    public function getTotalPages(): int
+    public function insertInSpecificPages($watermark,$specificPages):void
     {
-        return $this->n_pages;
+        $totalPages = $this->n_pages;
+        for($ctr = 1; $ctr <= $totalPages; $ctr++){
+          
+            if ( in_array($ctr, $specificPages ) ){
+				$this->watermarkOnSpecificPage($ctr,$watermark);
+			}else{
+                $this->no_insertOnThisPage($ctr);
+              
+            }
+        }
+    }
+    public function insertInAllPages($watermark):void
+    {
+        $totalPages = $this->n_pages;
+        for($ctr = 1; $ctr <= $totalPages; $ctr++){
+           $this->watermarkOnSpecificPage($ctr,$watermark);
+		
+        }
     }
 
-    public function no_insertWatermarkOnThisPage(int $page_number): void
+    private function no_insertWatermarkOnThisPage(int $page_number): void
     {
         $this->importPDFPage($page_number);
         $this->useTemplate($page_number);
     }
 
-    public function watermarkOnSpecificPage(int $page_number, PDFWatermark $watermark): void
+    private function watermarkOnSpecificPage(int $page_number, PDFWatermark $watermark): void
     {
         $this->importPDFPage($page_number);
         $templateDimension = $this->getPdfPageSize($page_number);

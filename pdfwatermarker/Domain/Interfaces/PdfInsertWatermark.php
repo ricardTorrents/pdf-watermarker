@@ -2,10 +2,11 @@
 
 interface PdfInsertWatermark
 {
-    public function getTotalPages(): int; // revisar
+   
+    
+    public function insertInAllPages(PDFWatermark $watemark):void;
+    public function insertInSpecificPages(PDFWatermark $watemark,array $specificPages):void;
 
-    public function watermarkOnSpecificPage(int $pageNumber, PDFWatermark $watemark): void;
-
-    public function no_insertWatermarkOnThisPage(int $pageNumber): void;
+    
 
 }

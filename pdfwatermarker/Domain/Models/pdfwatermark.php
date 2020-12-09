@@ -12,7 +12,10 @@
  * @version 1.1.1
  * @license https://opensource.org/licenses/MIT MIT
  */
-class PDFWatermark
+
+ // Include 
+ 
+class PDFWatermark implements IPdfWatermark
 {
 
     private $imageWatermark;
