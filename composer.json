@@ -14,13 +14,17 @@
 		"ext-gd": "*"
     },
 	"require-dev": {
-		"phpunit/phpunit": "4.0.*",
-		"phpdocumentor/phpdocumentor": "2.*",
+		"phpunit/phpunit": "^9.5",
 		"evert/phpdoc-md" : "~0.0.7"
 	},
 	"autoload": {
 		"psr-4": {
 			"Watermarker\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\": "tests/"
 		}
 	},
 	"minimum-stability": "stable"

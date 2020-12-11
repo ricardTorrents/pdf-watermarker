@@ -8,7 +8,7 @@
  * @license https://opensource.org/licenses/MIT MIT
  */
 
-namespace Watermarker\Domain\Models;
+namespace Watermarker\Domain\Entities;
 
 use Exception;
 

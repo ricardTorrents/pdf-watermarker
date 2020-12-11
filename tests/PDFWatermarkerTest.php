@@ -1,19 +1,21 @@
 <?php
 
-use Watermarker\Domain\Models\PDFWatermark;
+namespace Tests;
+use PHPUnit\Framework\TestCase;
+use Watermarker\Domain\Entities\PDFWatermark;
 use Watermarker\PDFWatermarker;
 
-class PDFWatermarker_test extends PHPUnit_Framework_TestCase
+class PDFWatermarkerTest extends TestCase
 {
-    public $watermark;
-    public $watermarker;
-    public $watermarker_multiple;
-    public $output;
-	public $output_multiple;
+    protected $watermark;
+    protected $watermarker;
+    protected $watermarker_multiple;
+    protected $output;
+    protected $output_multiple;
 	
 	protected $_assets_directory;
 
-    function setUp() {
+    protected function setUp() : void {
 		
 		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
 		
