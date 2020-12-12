@@ -7,6 +7,7 @@ class PositionEnum  {
      const TOPLEFT ='topleft';
      const TOPRIGHT = 'topright';
      const BOTTOMRIGHT ='bottomright';
+     const BOTTOMLEFT  ='bottomleft';
    
     
 	public static function CENTER()
@@ -25,6 +26,9 @@ class PositionEnum  {
 	{
 		return self::BOTTOMRIGHT;
 	}
-
+  public static function BOTTOMLEFT()
+	{
+		return self::BOTTOMLEFT;
+	}
 }
 ?>

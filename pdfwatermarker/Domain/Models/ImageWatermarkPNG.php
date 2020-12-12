@@ -1,13 +1,14 @@
 <?php
-include('../Domain/Models/ImageWatermark.php');
 
+require_once 'pdfwatermarker/Domain/Models/ImageWatermark.php';
 class ImageWatermarkPNG extends ImageWatermark
 {
+    const IMAGETYPE_PNG = 3;
 
     public function prepareImage(string $filePath): string
     {
         $imagetype = exif_imagetype($filePath);
-        if ($imagetype != IMAGETYPE_PNG) {
+        if ($imagetype != self::IMAGETYPE_PNG) {
             throw new Exception("Unsupported image type");
         }
         $path = sys_get_temp_dir() . '/' . uniqid() . '.png';

@@ -22,7 +22,7 @@ class InsertAWatermarkOnSpecificPages {
     {
         $this->pdf->insertInSpecificPages($this->watermark,$this->specificPages);
        //Save Pdf
-        
+       $this->pdf->writeOnFile($this->outputPath);
     } 
    
 

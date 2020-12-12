@@ -1,9 +1,7 @@
 <?php
-
+require_once 'pdfwatermarker/Domain/Interfaces/PdfInsertWatermark.php' ;
 use setasign\Fpdi\Fpdi;
 
-include('../Domain/ValueObjects/Coordinates.php');
-include('../Domain/Interfaces/PdfInsertWatermark.php');
 
 class FpdiPdf implements PdfInsertWatermark
 {
@@ -47,7 +45,9 @@ class FpdiPdf implements PdfInsertWatermark
     public function insertInAllPages($watermark):void
     {
         $totalPages = $this->n_pages;
+     
         for($ctr = 1; $ctr <= $totalPages; $ctr++){
+          
            $this->watermarkOnSpecificPage($ctr,$watermark);
 		
         }
@@ -68,9 +68,10 @@ class FpdiPdf implements PdfInsertWatermark
         $watermarkCoords = new Coordinates($watermark->getPosition(),
             $watermarkDimension[0],
             $watermarkDimension[1],
-            $templateDimension['w'],
-            $templateDimension['h']);
+            $templateDimension['width'],
+            $templateDimension['height']);
 
+  
         $this->updateTmpPdfPage($watermarkCoords, $watermark, $page_number);
 
     }
@@ -90,21 +91,22 @@ class FpdiPdf implements PdfInsertWatermark
 
     }
 
-    public function updateTmpPdfPage(Coordinates $watermarkCoords, Watermark $watermark, $page_number): void
+    public function updateTmpPdfPage(Coordinates $watermarkCoords, PDFWatermark $watermark, $page_number): void
     {
-
+        
         if ($watermark->usedAsBackground()) {
             $this->tmpPdf->Image($watermark->getFilePath(), $watermarkCoords->getX(), $watermarkCoords->getY(), -96);
             $this->useTemplate($page_number);
         } else {
             $this->useTemplate($page_number);
+            echo $watermark->getFilePath();
             $this->tmpPdf->Image($watermark->getFilePath(), $watermarkCoords->getX(), $watermarkCoords->getY(), -96);
         }
     }
 
     private function useTemplate(int $pageNumber): void
     {
-        $this->tmpPdf->useTemplate($this->tmpPdf->importPage($page_number));
+        $this->tmpPdf->useTemplate($this->tmpPdf->importPage($pageNumber));
     }
 
     private function getPdfPageSize(int $page_number): array
@@ -122,16 +124,16 @@ class FpdiPdf implements PdfInsertWatermark
         $tplIdx = $this->tmpPdf->importPage($page_number);
         $size = $this->tmpPdf->getTemplateSize($tplIdx);
 
-        if ($size['w'] > $size['h']) {
+        if ($size['width'] > $size['height']) {
             $orientation = "L";
         } else {
             $orientation = "P";
         }
-        if ($size['w'] == null or $size['h'] == null) {
+        if ($size['width'] == null or $size['height'] == null) {
             throw new Exception("Dimensions error");
         }
 
-        $this->tmpPdf->addPage($orientation, array($size['w'], $size['h']));
+        $this->tmpPdf->addPage($orientation, array($size['width'], $size['height']));
 
     }
 

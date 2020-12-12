@@ -1,5 +1,5 @@
 <?php
-use setasign\Fpdi\Fpdi;
+
 
 class InsertAWatermark {
     private $watermark;
@@ -23,6 +23,7 @@ class InsertAWatermark {
  
 
         //save PDF 
+        $this->pdf->writeOnFile($this->outputPath);
         
     } 
    

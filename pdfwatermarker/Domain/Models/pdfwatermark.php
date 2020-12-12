@@ -1,6 +1,6 @@
 <?php
 
-
+require_once 'pdfwatermarker/Domain/Interfaces/IPdfWatermark.php' ;
 
 //position 'center','topright', 'topleft', 'bottomright', 'bottomleft'
 
@@ -14,7 +14,6 @@
  */
 
  // Include 
- 
 class PDFWatermark implements IPdfWatermark
 {
 
@@ -27,6 +26,7 @@ class PDFWatermark implements IPdfWatermark
 
         $this->imageWatermark = $imageWatermark;
         $this->position = $position;
+      
         $this->asBackground = $asbackground;
     }
 
@@ -55,6 +55,7 @@ class PDFWatermark implements IPdfWatermark
 
     public function usedAsBackground(): bool
     {
+      
         return $this->asBackground;
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 interface IImageWatermark
 {
     public function getFilePath(): string;

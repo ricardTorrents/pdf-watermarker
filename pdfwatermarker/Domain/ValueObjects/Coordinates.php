@@ -6,7 +6,7 @@ class Coordinates
     private  $x;
     private  $y;
 
-    public function __construct(string $position, int $pageWidth, int $pageHeight, int $watermarkWidth, mixe $watermarkHeight)
+    public function __construct(string $position, int $pageWidth, int $pageHeight, int $watermarkWidth, $watermarkHeight)
     {
         switch ($position) {
             case PositionEnum::TOPLEFT:
