@@ -37,7 +37,7 @@ class FpdiPdf implements PdfInsertWatermark
             if ( in_array($ctr, $specificPages ) ){
 				$this->watermarkOnSpecificPage($ctr,$watermark);
 			}else{
-                $this->no_insertOnThisPage($ctr);
+               $this->no_insertWatermarkOnThisPage($ctr);
               
             }
         }

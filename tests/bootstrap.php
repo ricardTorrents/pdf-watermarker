@@ -19,8 +19,9 @@ $classes = array(
 	"Domain/ValueObjects/Coordinates.php",
 	"Infraestructure/FpdiPdf.php",
 	"Infraestructure/insertWatermarkController.php",
-	"Application/insertAWatermark.php"
-	
+	"Infraestructure/insertWatermarkOnpecificPagesController.php",
+	"Application/insertAWatermark.php",
+	"Application/insertAWatermarkOnSpecificPages.php"
 );
 
 foreach( $classes as $class ) {
