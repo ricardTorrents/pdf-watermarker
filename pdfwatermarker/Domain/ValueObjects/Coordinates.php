@@ -8,6 +8,14 @@ class Coordinates
 
     public function __construct(string $position, int $pageWidth, int $pageHeight, int $watermarkWidth, $watermarkHeight)
     {
+        echo $pageWidth;
+        echo " width page \n";
+        echo $watermarkWidth ;
+        echo " width watermark \n";
+        echo $pageHeight;
+        echo "height page \n";
+        echo $watermarkHeight ;
+        echo " height watermark \n";
         switch ($position) {
             case PositionEnum::TOPLEFT:
                 $this->x = 0;

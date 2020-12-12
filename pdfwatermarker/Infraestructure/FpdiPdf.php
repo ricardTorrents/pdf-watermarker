@@ -66,10 +66,11 @@ class FpdiPdf implements PdfInsertWatermark
         $watermarkDimension = $watermark->getMMDimension();
 
         $watermarkCoords = new Coordinates($watermark->getPosition(),
-            $watermarkDimension[0],
-            $watermarkDimension[1],
+           
             $templateDimension['width'],
-            $templateDimension['height']);
+            $templateDimension['height'],
+            $watermarkDimension[0],
+            $watermarkDimension[1]);
 
   
         $this->updateTmpPdfPage($watermarkCoords, $watermark, $page_number);
@@ -93,13 +94,15 @@ class FpdiPdf implements PdfInsertWatermark
 
     public function updateTmpPdfPage(Coordinates $watermarkCoords, PDFWatermark $watermark, $page_number): void
     {
-        
+        echo $watermarkCoords->getX();
+        echo "\n";	
+        echo $watermarkCoords->gety();
+        echo "\n";	
         if ($watermark->usedAsBackground()) {
             $this->tmpPdf->Image($watermark->getFilePath(), $watermarkCoords->getX(), $watermarkCoords->getY(), -96);
             $this->useTemplate($page_number);
         } else {
             $this->useTemplate($page_number);
-            echo $watermark->getFilePath();
             $this->tmpPdf->Image($watermark->getFilePath(), $watermarkCoords->getX(), $watermarkCoords->getY(), -96);
         }
     }

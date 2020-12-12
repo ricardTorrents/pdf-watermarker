@@ -18,9 +18,9 @@ class INSERTWATERMARK_test extends PHPUnit_Framework_TestCase
 	
 		$this->_assets_directory = PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "assets" . DIRECTORY_SEPARATOR;
 	    $filepath=$this->_assets_directory . 'star.png';
-        $input = $this->_assets_directory."test-multipage.pdf";
-        $output =  $this->_assets_directory . "test-output-multiline.pdf";
-        $InsertWatermark = insertWatermarkOnpecificPagesController::insertWatermarkPNG($input, $output,$filepath,PositionEnum::CENTER,false,[1,3]);
+        $input = $this->_assets_directory."test.pdf";
+        $output =  $this->_assets_directory . "test-output.pdf";
+        $InsertWatermark = insertWatermarkController::insertWatermarkPNG($input, $output,$filepath,PositionEnum::CENTER,false);
         $InsertWatermark->insert();
     }
 	
