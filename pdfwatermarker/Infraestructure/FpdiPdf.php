@@ -8,8 +8,8 @@ class FpdiPdf implements PdfInsertWatermark
     private $path;
     private $tmpPdf;
     private $n_pages;
-    private const WIDTH= 'width';
-    private const HEIGHT = 'height';
+    
+   
 
     public function __construct(string $pdfPath, Fpdi $tmpPdfInstance)
     {
@@ -68,8 +68,8 @@ class FpdiPdf implements PdfInsertWatermark
 
         $watermarkCoords = new Coordinates($watermark->getPosition(),
            
-            $templateDimension[self::WIDTH],
-            $templateDimension[self::HEIGHT],
+            $templateDimension[width],
+            $templateDimension[height],
             $watermarkDimension[0],
             $watermarkDimension[1]);
 
@@ -125,16 +125,16 @@ class FpdiPdf implements PdfInsertWatermark
         $tplIdx = $this->tmpPdf->importPage($page_number);
         $size = $this->tmpPdf->getTemplateSize($tplIdx);
 
-        if ($size[self::WIDTH] > $size[self::HEIGHT]) {
+        if ($size[width] > $size[height]) {
             $orientation = "L";
         } else {
             $orientation = "P";
         }
-        if ($size[self::WIDTH] == null or $size[self::HEIGHT] == null) {
+        if ($size[width] == null || $size[height] == null) {
             throw new UnexpectedValueException("Dimensions error");
         }
 
-        $this->tmpPdf->addPage($orientation, array($size[self::WIDTH], $size[self::HEIGHT]));
+        $this->tmpPdf->addPage($orientation, array($size[width], $size[height]));
 
     }
 
