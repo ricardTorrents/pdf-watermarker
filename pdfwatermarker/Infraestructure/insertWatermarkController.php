@@ -1,7 +1,7 @@
 <?php
 
 
-class insertWatermarkController{
+class InsertWatermarkController{
     private $insertAWatermark;
 
     public function __construct(InsertAWatermark $insertAWatermark)
@@ -9,7 +9,7 @@ class insertWatermarkController{
        $this->insertAWatermark=$insertAWatermark;
     
     }
-    private function construct_elements(ImageWatermarkPNG $image,string $inputPath,string $outputPath,string $position,bool $background):insertWatermarkController
+    private function construct_elements(ImageWatermarkPNG $image,string $inputPath,string $outputPath,string $position,bool $background):InsertWatermarkController
     {
        
         $watermark = new PDFWatermark($image,$position,$background);
@@ -17,13 +17,13 @@ class insertWatermarkController{
         return new self(new InsertAWatermark($pdf,$watermark,$outputPath));
     }
 
-    public static function insertWatermarkPNG(string $inputPath,string $outputPath,string $imagePath,string $position,bool $background): insertWatermarkController
+    public static function insertWatermarkPNG(string $inputPath,string $outputPath,string $imagePath,string $position,bool $background): InsertWatermarkController
     {
         $imageWatermark=new ImageWatermarkPNG($imagePath);
        
         return self::construct_elements($imageWatermark,$inputPath,$outputPath,$position,$background);
     }
-    public static function insertWatermarkJPG(string $inputPath,string $outputPath,string $imagePath,string $position, bool $background): insertWatermarkController
+    public static function insertWatermarkJPG(string $inputPath,string $outputPath,string $imagePath,string $position, bool $background): InsertWatermarkController
     {
         $imageWatermark=new ImageWatermarkJPG($imagePath);
         return self::construct_elements($imageWatermark,$inputPath,$outputPath,$position,$background);

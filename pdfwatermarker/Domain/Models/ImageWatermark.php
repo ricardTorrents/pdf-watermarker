@@ -20,7 +20,7 @@ abstract class ImageWatermark implements IImageWatermark
     {
         $result = file_exists($this->file);
         if ($result != 1) {
-            throw new Exception("Image doesn't exist.");
+            throw new InvalidArgumentException("Image doesn't exist.");
         }
 
     }

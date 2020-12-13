@@ -18,10 +18,10 @@ $classes = array(
 	"Domain/ValueObjects/PositionEnum.php",
 	"Domain/ValueObjects/Coordinates.php",
 	"Infraestructure/FpdiPdf.php",
-	"Infraestructure/insertWatermarkController.php",
-	"Infraestructure/insertWatermarkOnpecificPagesController.php",
-	"Application/insertAWatermark.php",
-	"Application/insertAWatermarkOnSpecificPages.php"
+	"Infraestructure/InsertWatermarkController.php",
+	"Infraestructure/InsertWatermarkOnpecificPagesController.php",
+	"Application/InsertAWatermark.php",
+	"Application/InsertAWatermarkOnSpecificPages.php"
 );
 
 foreach( $classes as $class ) {

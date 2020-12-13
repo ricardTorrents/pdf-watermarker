@@ -29,7 +29,7 @@ class PDFWatermarker_test extends PHPUnit_Framework_TestCase
     }
 	
     public function testDefaultOptions() {
-        echo $this->watermarker->getPath();
+      
         $this->watermarker->savePdf(); 
         $this->assertTrue( file_exists($this->output) === true );
 		    $this->assertTrue( filesize( $this->_assets_directory . "output-default-position.pdf") === filesize($this->output) );

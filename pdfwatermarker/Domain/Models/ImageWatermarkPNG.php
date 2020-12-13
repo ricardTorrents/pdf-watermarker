@@ -9,7 +9,7 @@ class ImageWatermarkPNG extends ImageWatermark
     {
         $imagetype = exif_imagetype($filePath);
         if ($imagetype != self::IMAGETYPE_PNG) {
-            throw new Exception("Unsupported image type");
+            throw new InvalidArgumentException("Unsupported image type");
         }
         $path = sys_get_temp_dir() . '/' . uniqid() . '.png';
         $image = imagecreatefrompng($filePath);

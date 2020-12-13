@@ -8,7 +8,8 @@ class FpdiPdf implements PdfInsertWatermark
     private $path;
     private $tmpPdf;
     private $n_pages;
-
+    private const WIDTH= 'width';
+    private const HEIGHT = 'height';
 
     public function __construct(string $pdfPath, Fpdi $tmpPdfInstance)
     {
@@ -67,8 +68,8 @@ class FpdiPdf implements PdfInsertWatermark
 
         $watermarkCoords = new Coordinates($watermark->getPosition(),
            
-            $templateDimension['width'],
-            $templateDimension['height'],
+            $templateDimension[self::WIDTH],
+            $templateDimension[self::HEIGHT],
             $watermarkDimension[0],
             $watermarkDimension[1]);
 
@@ -87,17 +88,14 @@ class FpdiPdf implements PdfInsertWatermark
     {
         $result = file_exists($this->path);
         if ($result != 1) {
-            throw new Exception("TEST Inputted PDF file doesn't exist");
+            throw new InvalidArgumentException("TEST Inputted PDF file doesn't exist");
         }
 
     }
 
     public function updateTmpPdfPage(Coordinates $watermarkCoords, PDFWatermark $watermark, $page_number): void
     {
-        echo $watermarkCoords->getX();
-        echo "\n";	
-        echo $watermarkCoords->gety();
-        echo "\n";	
+       	
         if ($watermark->usedAsBackground()) {
             $this->tmpPdf->Image($watermark->getFilePath(), $watermarkCoords->getX(), $watermarkCoords->getY(), -96);
             $this->useTemplate($page_number);
@@ -116,10 +114,10 @@ class FpdiPdf implements PdfInsertWatermark
     {
 
         $tplIdx = $this->tmpPdf->importPage($page_number);
-        $size = $this->tmpPdf->getTemplateSize($tplIdx);
+        return $this->tmpPdf->getTemplateSize($tplIdx);
 
 
-        return $size;
+    
     }
 
     private function importPDFPage(int $page_number): void
@@ -127,16 +125,16 @@ class FpdiPdf implements PdfInsertWatermark
         $tplIdx = $this->tmpPdf->importPage($page_number);
         $size = $this->tmpPdf->getTemplateSize($tplIdx);
 
-        if ($size['width'] > $size['height']) {
+        if ($size[self::WIDTH] > $size[self::HEIGHT]) {
             $orientation = "L";
         } else {
             $orientation = "P";
         }
-        if ($size['width'] == null or $size['height'] == null) {
-            throw new Exception("Dimensions error");
+        if ($size[self::WIDTH] == null or $size[self::HEIGHT] == null) {
+            throw new UnexpectedValueException("Dimensions error");
         }
 
-        $this->tmpPdf->addPage($orientation, array($size['width'], $size['height']));
+        $this->tmpPdf->addPage($orientation, array($size[self::WIDTH], $size[self::HEIGHT]));
 
     }
 

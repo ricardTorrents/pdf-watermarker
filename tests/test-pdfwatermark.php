@@ -4,10 +4,10 @@ $parent_directory = dirname(__FILE__);
 
 class PDFWatermark_test extends PHPUnit_Framework_TestCase
 {
-    public $watermark;
-	public $output;
-	public $imageWatermark;
-	
+    private $watermark;
+	private $output;
+	private $imageWatermark;
+	private $filepath;
 	protected $_assets_directory;
 
     function setUp() {
@@ -58,7 +58,7 @@ class PDFWatermark_test extends PHPUnit_Framework_TestCase
 		$method->setAccessible(true);
 
   		$fileExtension = substr($method->invokeArgs($this->imageWatermark, [ $this->_assets_directory . 'star.jpg']), -4);
-		echo $fileExtension;
+	
   		$this->assertSame('.jpg', $fileExtension);
 	}
 

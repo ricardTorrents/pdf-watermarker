@@ -2,7 +2,7 @@
 
 $parent_directory = dirname(__FILE__);
 
-class INSERTWATERMARK_test extends PHPUnit_Framework_TestCase
+class InsertWatermark_test extends PHPUnit_Framework_TestCase
 {
     public $watermark;
 	public $output;
@@ -20,7 +20,7 @@ class INSERTWATERMARK_test extends PHPUnit_Framework_TestCase
 	    $filepath=$this->_assets_directory . 'star.png';
         $input = $this->_assets_directory."test.pdf";
         $output =  $this->_assets_directory . "test-output.pdf";
-        $InsertWatermark = insertWatermarkController::insertWatermarkPNG($input, $output,$filepath,PositionEnum::CENTER,false);
+        $InsertWatermark = InsertWatermarkController::insertWatermarkPNG($input, $output,$filepath,PositionEnum::CENTER,false);
         $InsertWatermark->insert();
     }
 	
