@@ -21,7 +21,7 @@ class PDFWatermark implements IPdfWatermark
     private $position;
     private $asBackground;
 
-    public function __construct(IImageWatermark $imageWatermark, string $position, bool $asbackground)
+    public function __construct(Image $imageWatermark, string $position, bool $asbackground)
     {
 
         $this->imageWatermark = $imageWatermark;
@@ -31,7 +31,7 @@ class PDFWatermark implements IPdfWatermark
     }
 
     /** Dejamos este constructor simplemente para dar Semantica a la construccion */
-    public static function contructCenterOverlay(IImageWatermark $imageWatermark): PDFWatermark
+    public static function contructCenterOverlay(Image $imageWatermark): PDFWatermark
     {
 
         return new self($imageWatermark, PositionEnum::CENTER, false);
@@ -73,7 +73,7 @@ class PDFWatermark implements IPdfWatermark
 
     public function getMMDimension(): array
     {
-        return $this->imageWatermark->getMMDimension();
+        return $this->imageWatermark->getMMDimensions();
     }
 
 }

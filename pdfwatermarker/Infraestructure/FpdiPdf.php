@@ -34,15 +34,14 @@ class FpdiPdf implements PdfInsertWatermark
     {
         $totalPages = $this->n_pages;
         for($ctr = 1; $ctr <= $totalPages; $ctr++){
-          
             if ( in_array($ctr, $specificPages ) ){
 				$this->watermarkOnSpecificPage($ctr,$watermark);
 			}else{
                $this->no_insertWatermarkOnThisPage($ctr);
-              
             }
         }
     }
+    
     public function insertInAllPages($watermark):void
     {
         $totalPages = $this->n_pages;
@@ -68,8 +67,8 @@ class FpdiPdf implements PdfInsertWatermark
 
         $watermarkCoords = new Coordinates($watermark->getPosition(),
            
-            $templateDimension[width],
-            $templateDimension[height],
+            $templateDimension['width'],
+            $templateDimension['height'],
             $watermarkDimension[0],
             $watermarkDimension[1]);
 
@@ -125,16 +124,16 @@ class FpdiPdf implements PdfInsertWatermark
         $tplIdx = $this->tmpPdf->importPage($page_number);
         $size = $this->tmpPdf->getTemplateSize($tplIdx);
 
-        if ($size[width] > $size[height]) {
+        if ($size['width'] > $size['height']) {
             $orientation = "L";
         } else {
             $orientation = "P";
         }
-        if ($size[width] == null || $size[height] == null) {
+        if ($size['width'] == null || $size['height'] == null) {
             throw new UnexpectedValueException("Dimensions error");
         }
 
-        $this->tmpPdf->addPage($orientation, array($size[width], $size[height]));
+        $this->tmpPdf->addPage($orientation, array($size['width'], $size['height']));
 
     }
 

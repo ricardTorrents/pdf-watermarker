@@ -9,7 +9,7 @@ require PACKAGE_DIRECTORY . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 //Load project files
 $classes = array(
 	"Domain/Models/Pdfwatermark.php",
-	"Domain/Interfaces/IImageWatermark.php",
+
 	"Domain/Interfaces/IPdfWatermark.php",
 	"Domain/Interfaces/PdfInsertWatermark.php",
 	"Domain/Interfaces/PDFRepository.php",

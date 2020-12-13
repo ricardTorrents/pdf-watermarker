@@ -1,6 +1,7 @@
 <?php
-require_once 'pdfwatermarker/Domain/Interfaces/IImageWatermark.php';
-abstract class ImageWatermark implements IImageWatermark
+require_once 'pdfwatermarker/Domain/Interfaces/Image.php';
+
+abstract class ImageWatermark implements Image
 {
     protected $file;
     protected $height;
@@ -41,7 +42,9 @@ abstract class ImageWatermark implements IImageWatermark
         return $this->file;
     }
 
-    public function getMMDimension(): array
+    // Tansformar a getDimensions i  devuelve un objeto Dimensions( ValueObjects/) 
+
+    public function getMMDimensions(): array
     {
         return array(
             ($this->width / self::IMAGE_DPI) * self::DPI_TO_MM,

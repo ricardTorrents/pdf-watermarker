@@ -9,7 +9,7 @@ class InsertWatermarkController{
        $this->insertAWatermark=$insertAWatermark;
     
     }
-    private function construct_elements(IImageWatermark $image,string $inputPath,string $outputPath,string $position,bool $background):InsertWatermarkController
+    private function construct_elements(Image $image,string $inputPath,string $outputPath,string $position,bool $background):InsertWatermarkController
     {
        
         $watermark = new PDFWatermark($image,$position,$background);

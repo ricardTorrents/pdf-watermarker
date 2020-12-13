@@ -17,7 +17,6 @@ class ImageWatermarkJPG extends ImageWatermark
         imagedestroy($image);
         return $path;
     }
-
 }
 
 ?>
