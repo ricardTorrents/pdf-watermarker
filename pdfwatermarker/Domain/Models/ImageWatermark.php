@@ -1,5 +1,8 @@
 <?php
-require_once 'pdfwatermarker/Domain/Interfaces/Image.php';
+
+namespace Watermarker\Domain\Models;
+
+use Watermarker\Domain\Interfaces\Image;
 
 abstract class ImageWatermark implements Image
 {

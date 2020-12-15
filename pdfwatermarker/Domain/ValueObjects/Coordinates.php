@@ -1,5 +1,6 @@
 <?php
 
+namespace Watermarker\Domain\ValueObjects;
 
 class Coordinates
 {

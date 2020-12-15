@@ -1,5 +1,7 @@
 <?php
 
+namespace Watermarker\Domain\ValueObjects;
+
 class Dimensions {
     protected $pixelHeight;
     protected $pixelWidth;

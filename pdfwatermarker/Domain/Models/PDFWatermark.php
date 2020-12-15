@@ -1,11 +1,15 @@
 <?php
 
-require_once 'pdfwatermarker/Domain/Interfaces/IPdfWatermark.php' ;
+namespace Watermarker\Domain\Models;
+
+use Watermarker\Domain\Interfaces\IPdfWatermark;
+use Watermarker\Domain\Interfaces\Image;
+use Watermarker\Domain\ValueObjects\PositionEnum;
 
 //position 'center','topright', 'topleft', 'bottomright', 'bottomleft'
 
 /**
- * pdfwatermark.php
+ * PDFWatermark.php
  *
  * This class defines properties of a watermark
  * @author Binarystash <binarystash01@gmail.com>
@@ -31,9 +35,8 @@ class PDFWatermark implements IPdfWatermark
     }
 
     /** Dejamos este constructor simplemente para dar Semantica a la construccion */
-    public static function contructCenterOverlay(Image $imageWatermark): PDFWatermark
+    public static function contructCenterOverlay(Image $imageWatermark)
     {
-
         return new self($imageWatermark, PositionEnum::CENTER, false);
     }
 

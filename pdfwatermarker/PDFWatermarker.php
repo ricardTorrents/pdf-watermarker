@@ -1,12 +1,14 @@
 <?php
 /**
- * pdfwatermarker.php
+ * PDFWatermarker.php
  * 
  * This class applies PDFWatermark to the file
  * @author Binarystash <binarystash01@gmail.com>
  * @version 1.1.1
  * @license https://opensource.org/licenses/MIT MIT
  */
+
+namespace Watermarker;
 
 use setasign\Fpdi\Fpdi;
 

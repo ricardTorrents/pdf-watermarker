@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Watermarker\Domain\ValueObjects;
 
 class PositionEnum  {
      const CENTER = 'center';

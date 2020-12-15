@@ -1,6 +1,9 @@
 <?php
 
-require_once 'pdfwatermarker/Domain/Models/ImageWatermark.php';
+namespace Watermarker\Domain\Models;
+
+use Watermarker\Domain\Models\ImageWatermark;
+
 class ImageWatermarkPNG extends ImageWatermark
 {
     const IMAGETYPE_PNG = 3;

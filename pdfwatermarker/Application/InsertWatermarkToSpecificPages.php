@@ -1,7 +1,8 @@
 <?php
 
+namespace Watermarker\Application;
 
-class InsertAWatermarkOnSpecificPages {
+class InsertWatermarkToSpecificPages {
     private $watermark;
     private $pdf;
     private $specificPages;

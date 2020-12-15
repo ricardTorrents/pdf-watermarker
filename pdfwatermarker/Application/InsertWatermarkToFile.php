@@ -1,7 +1,8 @@
 <?php
 
+namespace Watermarker\Application;
 
-class InsertAWatermark {
+class InsertWatermarkToFile {
     private $watermark;
     private $pdf;
     private $outputPath;
