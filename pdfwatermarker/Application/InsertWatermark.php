@@ -18,7 +18,9 @@ class InsertWatermark
     }
 
 
-    private function execute(string $inputPath,
+
+
+    public function allPages(string $inputPath,
                             string $outputPath,
                             string $watermarkPath,
                             string $position = PositionEnum::CENTER,
@@ -31,12 +33,18 @@ class InsertWatermark
         $this->repo->save($inputFile, $outputPath);
     }
 
-    public function allPages(string $inputPath,
-                            string $outputPath,
-                            string $watermarkPath,
-                            string $position = PositionEnum::CENTER,
-                            bool $asBackground = false): void
+    public function range(string $inputPath,
+                             string $outputPath,
+                             string $watermarkPath,
+                             int $start,
+                             int $end,
+                             string $position = PositionEnum::CENTER,
+                             bool $asBackground = false): void
     {
-        $this->execute($inputPath, $outputPath, $watermarkPath, $position, $asBackground);
+        $inputFile = $this->repo->open($inputPath);
+        $imageWatermark = ImageWatermarkFactory::build($watermarkPath);
+        $watermarker = new Watermarker($imageWatermark, $position, $asBackground);
+        $watermarker->range($inputFile, $start, $end);
+        $this->repo->save($inputFile, $outputPath);
     }
 }

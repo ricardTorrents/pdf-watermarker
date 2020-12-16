@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Watermarker\Infraestructure;
+namespace Watermarker\Infraestructure\FPDI;
 
 use Watermarker\Domain\Interfaces\PDFFile;
 use Watermarker\Domain\Interfaces\PDFRepository;

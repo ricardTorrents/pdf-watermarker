@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Watermarker\Infraestructure;
+namespace Watermarker\Infraestructure\FPDI;
 
 
 use setasign\Fpdi\Fpdi;

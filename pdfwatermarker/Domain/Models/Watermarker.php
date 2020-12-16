@@ -30,10 +30,18 @@ class Watermarker
 
     public function range(PDFFile $file, int $start, int $end)
     {
-        $end = $end !== null ? $end : $file->getTotalPages();
+        $totalPages = $file->getTotalPages();
 
-        for ($ctr = 1; $ctr <= $end; $ctr++) {
-            $file->watermarkPage($ctr, $this->imageWatermark, $this->position, $this->asBackground);
+        $end = $end !== null ? $end : $totalPages;
+        $specificPages = range($start, $end);
+
+        for ($ctr = 1; $ctr <= $totalPages; $ctr++) {
+            if (in_array($ctr, $specificPages) || empty($specificPages)) {
+                $file->watermarkPage($ctr, $this->imageWatermark, $this->position, $this->asBackground);
+            } else {
+                $file->watermarkPage($ctr, $this->imageWatermark, $this->position, $this->asBackground, false);
+            }
+
         }
     }
 }
