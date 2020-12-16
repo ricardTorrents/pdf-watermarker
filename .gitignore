@@ -8,3 +8,6 @@ manual
 composer.lock
 assets/test-output.pdf
 assets/test-output-multiple.pdf
+/.idea/
+/.vscode/
+/.phpunit.result.cache

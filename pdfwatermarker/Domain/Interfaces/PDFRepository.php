@@ -4,6 +4,10 @@ namespace Watermarker\Domain\Interfaces;
 
 interface PDFRepository
 {
-    // TODO HACER
+    public function open(string $inputPath): PDFFile;
+
+    public function save(PDFFile $file, string $filename);
+
+
 }
-?>
+

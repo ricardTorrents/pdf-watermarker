@@ -2,6 +2,7 @@
 
 namespace Watermarker\Domain\Models;
 
+use InvalidArgumentException;
 use Watermarker\Domain\Interfaces\Image;
 
 abstract class ImageWatermark implements Image
@@ -45,7 +46,6 @@ abstract class ImageWatermark implements Image
         return $this->file;
     }
 
-    // Tansformar a getDimensions i  devuelve un objeto Dimensions( ValueObjects/) 
 
     public function getMMDimensions(): array
     {

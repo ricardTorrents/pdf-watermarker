@@ -1,37 +1,23 @@
 <?php
 
+namespace Watermarker\Infraestructure;
 
-class InsertWatermarkController{
-    private $insertAWatermark;
+use Watermarker\Application\InsertWatermark;
+use Watermarker\Domain\ValueObjects\PositionEnum;
 
-    public function __construct(InsertAWatermark $insertAWatermark)
-	{	
-       $this->insertAWatermark=$insertAWatermark;
-    
-    }
-    private function construct_elements(Image $image,string $inputPath,string $outputPath,string $position,bool $background):InsertWatermarkController
-    {
-       
-        $watermark = new PDFWatermark($image,$position,$background);
-        $pdf = FpdiPdf::pdf($inputPath);
-        return new self(new InsertAWatermark($pdf,$watermark,$outputPath));
-    }
+class InsertWatermarkController
+{
 
-    public static function insertWatermarkPNG(string $inputPath,string $outputPath,string $imagePath,string $position,bool $background): InsertWatermarkController
-    {
-        $imageWatermark=new ImageWatermarkPNG($imagePath);
-       
-        return self::construct_elements($imageWatermark,$inputPath,$outputPath,$position,$background);
-    }
-    public static function insertWatermarkJPG(string $inputPath,string $outputPath,string $imagePath,string $position, bool $background): InsertWatermarkController
-    {
-        $imageWatermark=new ImageWatermarkJPG($imagePath);
-        return self::construct_elements($imageWatermark,$inputPath,$outputPath,$position,$background);
-    }
 
-    public function insert():void
+    public function insertAllPages(string $inputPath,
+                                   string $outputPath,
+                                   string $watermarkPath,
+                                   string $position = PositionEnum::CENTER,
+                                   bool $asBackground = false): void
     {
-        $this->insertAWatermark->insert();
+        $repo = new FPDIRepository();
+        $insertWatermarkToFile = new InsertWatermark($repo);
+        $insertWatermarkToFile->allPages($inputPath, $outputPath, $watermarkPath,$position,$asBackground);
     }
 
 }

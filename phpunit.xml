@@ -2,7 +2,7 @@
 		colors="true"
 		bootstrap="tests/bootstrap.php">
 	<testsuites>
-		<testsuite>
+		<testsuite name="watermark">
 			<directory>./tests</directory>
 		</testsuite>
 	</testsuites>

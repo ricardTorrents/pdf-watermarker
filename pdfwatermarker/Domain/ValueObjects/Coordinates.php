@@ -4,12 +4,12 @@ namespace Watermarker\Domain\ValueObjects;
 
 class Coordinates
 {
-    private  $x;
-    private  $y;
+    private $x;
+    private $y;
 
-    public function __construct(string $position, int $pageWidth, int $pageHeight,  float $watermarkWidth, float $watermarkHeight)
+    public function __construct(string $position, float $pageWidth, float $pageHeight, float $watermarkWidth, float $watermarkHeight)
     {
-       
+
         switch ($position) {
             case PositionEnum::TOPLEFT:
                 $this->x = 0;
@@ -34,7 +34,6 @@ class Coordinates
         }
     }
 
-    
 
     /**
      * @return float
