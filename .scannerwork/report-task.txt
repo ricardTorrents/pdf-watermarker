@@ -1,0 +1,6 @@
+projectKey=pdf-watermark
+serverUrl=http://ci.quabu.eu:9000
+serverVersion=8.4.2.36762
+dashboardUrl=http://ci.quabu.eu:9000/dashboard?id=pdf-watermark
+ceTaskId=AXZdRXf0laGJPJ8cnMIW
+ceTaskUrl=http://ci.quabu.eu:9000/api/ce/task?id=AXZdRXf0laGJPJ8cnMIW
