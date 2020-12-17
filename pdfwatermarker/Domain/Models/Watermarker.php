@@ -23,9 +23,8 @@ class Watermarker
 
     public function allPages(PDFFile $file)
     {
-        $totalPages = $file->getTotalPages();
 
-        $this->range($file, 1, $totalPages);
+        $this->range($file, 1);
     }
 
     public function range(PDFFile $file, int $start, int $end)
