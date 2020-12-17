@@ -2,12 +2,13 @@
 
 namespace Watermarker\Domain\Interfaces;
 
+
+
+
 interface PDFFile
 {
-    public function getTotalPages(): int;
-
-    public function watermarkPage(int $pageNumber, Image $watermark, string $position, bool $asBackground, bool $isVisible = true);
-
+    public function watermarkAll(Image $imageWatermark,string $position, bool $asBackground):void ;
+    public function watermarkRange(int $start, int $end,Image $imageWatermark,string $position, bool $asBackground):void ;
     public function getBuffer();
 
 }

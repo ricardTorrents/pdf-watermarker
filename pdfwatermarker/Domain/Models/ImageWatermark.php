@@ -17,7 +17,7 @@ abstract class ImageWatermark implements Image
     {
         $this->file = $this->prepareImage($filePath);
         $this->validatePath();
-        $this->_getImageSize($this->file);
+        $this->getImageSize($this->file);
 
     }
 
@@ -30,7 +30,7 @@ abstract class ImageWatermark implements Image
 
     }
 
-    private function _getImageSize(string $image): void
+    private function getImageSize(string $image): void
     {
         $is = getimagesize($image);
         $this->width = $is[0];
