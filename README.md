@@ -16,48 +16,61 @@ Using it, you can:
 
 3. Include the files in your project. 
 
+ There are 2 controllers 1 for insert in all pages and 1 for insert in a range 
+
+* Insert in all pages 
 ``` php
 <?php
-require_once('pdfwatermarker/pdfwatermarker.php');
-require_once('pdfwatermarker/pdfwatermark.php');
+use Watermarker\Domain\ValueObjects\PositionEnum;
+use Watermarker\Infraestructure\Controllers\InsertWatermarkToFileController;
+```
+or 
+
+* Insert in a range 
+``` php
+<?php
+use Watermarker\Domain\ValueObjects\PositionEnum;
+use Watermarker\Infraestructure\Controllers\InsertWatermarkToPageRangeController;
 ```
 
 ## Usage
-
+* Insert in all pages 
 ``` php
 <?php
-
-//Specify path to image. The image must have a 96 DPI resolution.
-$watermark = new PDFWatermark('C:\myimage.png'); 
-
-//Set the position
-$watermark->setPosition('bottomleft');
-
-//Place watermark behind original PDF content. Default behavior places it over the content.
-$watermark->setAsBackground();
-
-//Specify the path to the existing pdf, the path to the new pdf file, and the watermark object
-$watermarker = new PDFWatermarker('C:\test.pdf','C:\output.pdf',$watermark); 
-
-//Set page range. Use 1-based index.
-$watermarker->setPageRange(1,5);
- 
-//Save the new PDF to its specified location
-$watermarker->savePdf(); 
+    $inputFile="path to inputFile";
+    $outputPath="path to outpuFile ";
+    $watermarkPath="path to Image ";
+    $position=PositionEnum::CENTER // Use this enum to select position, default is center
+    $isBackground=False // Default is False
+    $controller=new InsertWatermarkToFileController();
+    $this->controller->execute($inputPath, $outputPath, $watermarkPath,$position,$isBackground);
+?>
+```
+* Insert in a range 
+``` php
+<?php
+    $inputFile="path to inputFile";
+    $outputPath="path to outpuFile ";
+    $watermarkPath="path to Image ";
+    $position=PositionEnum::CENTER // Use this enum to select position, default is center
+    $pageStart="page to start to insert watermark"
+    $pageEnd="page to finish the rang"
+    $isBackground=False // Default is False
+    $controller=new InsertWatermarkToPageRangeController();
+    $this->controller->execute($inputPath, $outputPath, $watermarkPath,$pageStart,$pageEnd,$position,$isBackground);
 ?>
 ```
 
 Five positions can be used. 'center' is the default.
+``` php
+<?php
+ PositionEnum::CENTER
+ PositionEnum::TOPLEFT
+ PositionEnum::TOPRIGHT
+ PositionEnum::BOTTOMRIGHT
+ PositionEnum::BOTTOMLEFT
+?>
+```
 
-* center
-* topleft
-* topright
-* bottomright
-* bottomleft
 
-See the [API Documentation](https://github.com/binarystash/pdf-watermarker/wiki/API-Documentation) for more details.
-
-## Support
-
-Report bugs at https://github.com/binarystash/pdf-watermarker/issues.
 
