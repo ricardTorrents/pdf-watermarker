@@ -7,9 +7,9 @@ use Watermarker\Domain\Interfaces\Image;
 
 abstract class ImageWatermark implements Image
 {
-    protected $file;
-    protected $height;
-    protected $width;
+    protected string $file;
+    protected float $height;
+    protected float $width;
     private const IMAGE_DPI = 96;
     private const DPI_TO_MM = 25.4;
 

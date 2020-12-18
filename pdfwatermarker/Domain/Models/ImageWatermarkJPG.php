@@ -1,4 +1,5 @@
 <?php
+
 namespace Watermarker\Domain\Models;
 
 use Watermarker\Domain\Models\ImageWatermark;
