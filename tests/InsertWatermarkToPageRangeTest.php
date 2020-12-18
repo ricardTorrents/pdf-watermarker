@@ -35,4 +35,45 @@ class InsertWatermarkToPageRangeTest extends TestCase
         printf(filesize($this->outputPathMulti));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-multipage.pdf') === filesize($this->outputPathMulti));
     }
+
+    // public function testTopRightPosition()
+    // {
+    //     $watermarkPath = $this->assetsDirectory . "star.png";
+    //     $this->controller->execute($this->inputPath, $this->outputPath, $watermarkPath, PositionEnum::TOPRIGHT);
+    //     $this->assertTrue(file_exists($this->outputPath));
+    //     $this->assertTrue(filesize($this->assetsDirectory . 'output-topright-position.pdf') === filesize($this->outputPath));
+    // }
+
+    // public function testTopLeftPosition()
+    // {
+    //     $watermarkPath = $this->assetsDirectory . "star.png";
+    //     $this->controller->execute($this->inputPath, $this->outputPath, $watermarkPath, PositionEnum::TOPLEFT);
+    //     $this->assertTrue(file_exists($this->outputPath));
+    //     $this->assertTrue(filesize($this->assetsDirectory . 'output-topleft-position.pdf') === filesize($this->outputPath));
+    // }
+
+    // public function testBottomRightPosition()
+    // {
+    //     $watermarkPath = $this->assetsDirectory . "star.png";
+    //     $this->controller->execute($this->inputPath, $this->outputPath, $watermarkPath, PositionEnum::BOTTOMRIGHT);
+    //     $this->assertTrue(file_exists($this->outputPath));
+    //     $this->assertTrue(filesize($this->assetsDirectory . 'output-bottomright-position.pdf') === filesize($this->outputPath));
+
+    // }
+
+    // public function testBottomLeftPosition()
+    // {
+    //     $watermarkPath = $this->assetsDirectory . "star.png";
+    //     $this->controller->execute($this->inputPath, $this->outputPath, $watermarkPath, PositionEnum::BOTTOMLEFT);
+    //     $this->assertTrue(file_exists($this->outputPath));
+    //     $this->assertTrue(filesize($this->assetsDirectory . 'output-bottomleft-position.pdf') === filesize($this->outputPath));
+    // }
+
+    // public function testAsBackground()
+    // {
+    //     $watermarkPath = $this->assetsDirectory . "star.png";
+    //     $this->controller->execute($this->inputPath, $this->outputPath, $watermarkPath, PositionEnum::CENTER, true);
+    //     $this->assertTrue(file_exists($this->outputPath));
+    //     $this->assertTrue(filesize($this->assetsDirectory . 'output-as-background.pdf') === filesize($this->outputPath));
+    // }
 }
