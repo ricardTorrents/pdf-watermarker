@@ -12,7 +12,7 @@ use Watermarker\Domain\Interfaces\Image;
 
 class InsertWatermarkToFile
 {
-    private $repo;
+    private PDFRepository $repo;
 
     public function __construct(PDFRepository $repo,Image $imageWatermark)
     {

@@ -4,8 +4,8 @@ namespace Watermarker\Domain\ValueObjects;
 
 class Coordinates
 {
-    private $x;
-    private $y;
+    private float $x;
+    private float $y;
 
     public function __construct(string $position, float $pageWidth, float $pageHeight, float $watermarkWidth, float $watermarkHeight)
     {
@@ -34,18 +34,11 @@ class Coordinates
         }
     }
 
-
-    /**
-     * @return float
-     */
     public function getX(): float
     {
         return $this->x;
     }
 
-    /**
-     * @return float
-     */
     public function getY(): float
     {
         return $this->y;

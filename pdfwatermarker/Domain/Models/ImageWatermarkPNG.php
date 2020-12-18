@@ -25,5 +25,4 @@ class ImageWatermarkPNG extends ImageWatermark
 
 }
 
-
 ?>

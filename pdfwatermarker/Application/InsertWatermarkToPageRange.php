@@ -11,7 +11,7 @@ use Watermarker\Domain\Interfaces\Image;
 
 class InsertWatermarkToPageRange
 {
-    private $repo;
+    private PDFRepository $repo;
 
     public function __construct(PDFRepository $repo,Image $imageWatermark)
     {
