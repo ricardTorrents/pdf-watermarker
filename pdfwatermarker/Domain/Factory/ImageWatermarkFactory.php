@@ -19,7 +19,7 @@ class ImageWatermarkFactory
             case IMAGETYPE_PNG:
                 return new ImageWatermarkPNG($filePath);
             default:
-                throw new Exception("Unsupported image type");
+                throw new InvalidArgumentException("Unsupported image type");
         }
     }
 }

@@ -32,6 +32,7 @@ class InsertWatermarkToFileTest extends TestCase
         $this->assertTrue(file_exists($this->outputPath));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-from-jpg.pdf') === filesize($this->outputPath));
     }
+   
 
     public function testTopRightPosition()
     {
@@ -73,5 +74,14 @@ class InsertWatermarkToFileTest extends TestCase
         $this->controller->execute($this->inputPath, $this->outputPath, $watermarkPath, PositionEnum::CENTER, true);
         $this->assertTrue(file_exists($this->outputPath));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-as-background.pdf') === filesize($this->outputPath));
+    }
+
+    public function testDefaultOptionsMultipageWithPNG()
+    {
+        $watermarkPath = $this->assetsDirectory . "star.png";
+        $this->controller->execute($this->inputPathMulti,  $this->outputPathMulti, $watermarkPath);
+        $this->assertTrue(file_exists($this->outputPathMulti));
+        $this->assertTrue(filesize($this->assetsDirectory . 'output-png-all-pages.pdf') === filesize($this->outputPathMulti));
+      
     }
 }

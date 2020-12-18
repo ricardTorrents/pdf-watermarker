@@ -19,7 +19,7 @@ class FPDIRepository implements PDFRepository
     public function save(PDFFile $file, string $filename)
     {
         if (!file_put_contents($filename, $file->getBuffer())) {
-            throw new \Exception("Unable to create output file: " . $filename);
+            throw new InvalidArgumentException("Unable to create output file: " . $filename);
         }
     }
 }

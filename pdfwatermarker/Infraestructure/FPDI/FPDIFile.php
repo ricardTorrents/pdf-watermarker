@@ -9,7 +9,7 @@ use Watermarker\Domain\Interfaces\Image;
 use Watermarker\Domain\Interfaces\PDFFile;
 use Watermarker\Domain\ValueObjects\Coordinates;
 use Watermarker\Domain\ValueObjects\PositionEnum;
-
+ 
 class FPDIFile implements PDFFile
 {
 
@@ -94,8 +94,8 @@ class FPDIFile implements PDFFile
 
         $end = $end !== null ? $end : $this->totalPages;
         $specificPages = range($start, $end);
-
         for ($ctr = 1; $ctr <= $this->totalPages; $ctr++) {
+          
             if (in_array($ctr, $specificPages) || empty($specificPages)) {
                 $this->watermarkPage($ctr, $imageWatermark, $position, $asBackground);
             } else {
