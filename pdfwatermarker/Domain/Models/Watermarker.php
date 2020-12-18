@@ -9,9 +9,9 @@ use Watermarker\Domain\Interfaces\PDFFile;
 
 class Watermarker
 {
-    private $imageWatermark;
-    private $position;
-    private $asBackground;
+    private ImageWatermark $imageWatermark;
+    private string $position;
+    private bool $asBackground;
 
     public function __construct(Image $imageWatermark, string $position, bool $asBackground)
     {
@@ -27,7 +27,7 @@ class Watermarker
         $this->range($file, 1);
     }
 
-    public function range(PDFFile $file, int $start, int $end)
+    public function range(PDFFile $file, int $start, ?int $end)
     {
         $totalPages = $file->getTotalPages();
 
