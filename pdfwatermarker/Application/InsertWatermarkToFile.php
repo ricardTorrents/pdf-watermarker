@@ -9,7 +9,8 @@ use Watermarker\Domain\Models\Watermarker;
 use Watermarker\Domain\ValueObjects\PositionEnum;
 use Watermarker\Domain\Interfaces\Image;
 
-class InsertWatermarkRange
+
+class InsertWatermarkToFile
 {
     private $repo;
 
@@ -24,14 +25,14 @@ class InsertWatermarkRange
   // ImageWatermarker passar como colaborador.
 
     public function execute(string $inputPath,
-                             string $outputPath,
-                             int $start,
-                             int $end,
-                             string $position = PositionEnum::CENTER,
-                             bool $asBackground = false): void
+                            string $outputPath,
+                            string $position = PositionEnum::CENTER,
+                            bool $asBackground = false): void
     {
         $inputFile = $this->repo->open($inputPath);
-        $inputFile->watermarkRange($start,$end,$this->imageWatermark,$position,$asBackground);
+        $inputFile->watermarkAll($this->imageWatermark,$position,$asBackground);
         $this->repo->save($inputFile, $outputPath);
     }
+
+    
 }

@@ -9,12 +9,6 @@ use Watermarker\Domain\Models\ImageWatermarkPNG;
 
 class ImageWatermarkFactory
 {
-
-
-    private function __construct()
-    {
-    }
-
     public static function build($filePath): Image
     {
         $imageType = exif_imagetype($filePath);
