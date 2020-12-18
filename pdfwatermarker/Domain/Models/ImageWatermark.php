@@ -37,15 +37,12 @@ abstract class ImageWatermark implements Image
         $this->height = $is[1];
     }
 
-
     abstract public function prepareImage(string $filePath): string;
-
 
     public function getFilePath(): string
     {
         return $this->file;
     }
-
 
     public function getMMDimensions(): array
     {
@@ -54,7 +51,6 @@ abstract class ImageWatermark implements Image
             ($this->height / self::IMAGE_DPI) * self::DPI_TO_MM,
         );
     }
-
 }
 
 
