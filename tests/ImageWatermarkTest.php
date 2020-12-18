@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Watermarker\Domain\Models\ImageWatermarkJPG;
 use Watermarker\Domain\Models\ImageWatermarkPNG;
@@ -21,7 +22,7 @@ class ImageWatermarkTest extends TestCase
         $this->watermarkJPG = new ImageWatermarkJPG($this->inputPathJPG);
         $this->inputPathPNG = $this->assetsDirectory . "star.png";
         $this->watermarkPNG = new ImageWatermarkPNG($this->inputPathPNG);
-     
+
     }
 
     /** @test */
@@ -46,13 +47,15 @@ class ImageWatermarkTest extends TestCase
     /** @test */
     public function get_dimensions_png()
     {
-       
+
         $this->assertTrue(count(array_diff($this->watermarkPNG->getMMDimensions(), array(52.916666666667, 52.916666666667))) === 0);
     }
 
+    /** @test */
     public function invalidImageType()
     {
+        $this->expectException(InvalidArgumentException::class);
         $input = $this->assetsDirectory . "star.tif";
-        $this->assertTrue(new ImageWatermarkPNG($input)==="InvalidArgumentException: Unsupported image type");
+        $imageWatermarkPNG = new ImageWatermarkPNG($input);
     }
 }

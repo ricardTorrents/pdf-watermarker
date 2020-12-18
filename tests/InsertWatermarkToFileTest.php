@@ -25,6 +25,7 @@ class InsertWatermarkToFileTest extends TestCase
         $this->outputPathMulti = $this->assetsDirectory . "test-output-multiple.pdf";
     }
 
+    /** @test */
     public function testDefaultOptionsWithJPG()
     {
         $watermarkPath = $this->assetsDirectory . "star.jpg";
@@ -32,8 +33,8 @@ class InsertWatermarkToFileTest extends TestCase
         $this->assertTrue(file_exists($this->outputPath));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-from-jpg.pdf') === filesize($this->outputPath));
     }
-   
 
+    /** @test */
     public function testTopRightPosition()
     {
 
@@ -43,6 +44,7 @@ class InsertWatermarkToFileTest extends TestCase
         $this->assertTrue(filesize($this->assetsDirectory . 'output-topright-position.pdf') === filesize($this->outputPath));
     }
 
+    /** @test */
     public function testTopLeftPosition()
     {
         $watermarkPath = $this->assetsDirectory . "star.png";
@@ -51,6 +53,7 @@ class InsertWatermarkToFileTest extends TestCase
         $this->assertTrue(filesize($this->assetsDirectory . 'output-topleft-position.pdf') === filesize($this->outputPath));
     }
 
+    /** @test */
     public function testBottomRightPosition()
     {
         $watermarkPath = $this->assetsDirectory . "star.png";
@@ -60,6 +63,7 @@ class InsertWatermarkToFileTest extends TestCase
 
     }
 
+    /** @test */
     public function testBottomLeftPosition()
     {
         $watermarkPath = $this->assetsDirectory . "star.png";
@@ -68,6 +72,7 @@ class InsertWatermarkToFileTest extends TestCase
         $this->assertTrue(filesize($this->assetsDirectory . 'output-bottomleft-position.pdf') === filesize($this->outputPath));
     }
 
+    /** @test */
     public function testAsBackground()
     {
         $watermarkPath = $this->assetsDirectory . "star.png";
@@ -76,12 +81,13 @@ class InsertWatermarkToFileTest extends TestCase
         $this->assertTrue(filesize($this->assetsDirectory . 'output-as-background.pdf') === filesize($this->outputPath));
     }
 
+    /** @test */
     public function testDefaultOptionsMultipageWithPNG()
     {
         $watermarkPath = $this->assetsDirectory . "star.png";
-        $this->controller->execute($this->inputPathMulti,  $this->outputPathMulti, $watermarkPath);
+        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath);
         $this->assertTrue(file_exists($this->outputPathMulti));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-png-all-pages.pdf') === filesize($this->outputPathMulti));
-      
+
     }
 }

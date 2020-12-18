@@ -40,7 +40,7 @@ class InsertWatermarkToPageRangeTest extends TestCase
     public function testTopRightPositionRange()
     {
         $watermarkPath = $this->assetsDirectory . "star.png";
-        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath,1, 3, PositionEnum::TOPRIGHT);
+        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath, 1, 3, PositionEnum::TOPRIGHT);
         $this->assertTrue(file_exists($this->outputPathMulti));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-topright-position-range.pdf') === filesize($this->outputPathMulti));
     }
@@ -48,7 +48,7 @@ class InsertWatermarkToPageRangeTest extends TestCase
     public function testTopLeftPositionRange()
     {
         $watermarkPath = $this->assetsDirectory . "star.png";
-        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath,1, 3, PositionEnum::TOPLEFT);
+        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath, 1, 3, PositionEnum::TOPLEFT);
         $this->assertTrue(file_exists($this->outputPathMulti));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-topleft-position-range.pdf') === filesize($this->outputPathMulti));
     }
@@ -57,7 +57,7 @@ class InsertWatermarkToPageRangeTest extends TestCase
     {
 
         $watermarkPath = $this->assetsDirectory . "star.png";
-        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath,4, 5, PositionEnum::BOTTOMRIGHT);
+        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath, 4, 5, PositionEnum::BOTTOMRIGHT);
         $this->assertTrue(file_exists($this->outputPathMulti));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-bottomRight-position-range.pdf') === filesize($this->outputPathMulti));
 
@@ -68,7 +68,7 @@ class InsertWatermarkToPageRangeTest extends TestCase
     {
 
         $watermarkPath = $this->assetsDirectory . "star.png";
-        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath,1, 1, PositionEnum::BOTTOMLEFT);
+        $this->controller->execute($this->inputPathMulti, $this->outputPathMulti, $watermarkPath, 1, 1, PositionEnum::BOTTOMLEFT);
         $this->assertTrue(file_exists($this->outputPathMulti));
         $this->assertTrue(filesize($this->assetsDirectory . 'output-bottomleft-position-range.pdf') === filesize($this->outputPathMulti));
     }

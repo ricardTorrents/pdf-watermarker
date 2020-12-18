@@ -1,7 +1,6 @@
 <?php
 
-//Define constants
-define( "PACKAGE_DIRECTORY", dirname( __DIR__ ) );
+define("PACKAGE_DIRECTORY", dirname(__DIR__));
 
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', '1');

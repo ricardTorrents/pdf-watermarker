@@ -8,8 +8,7 @@ use setasign\Fpdi\Fpdi;
 use Watermarker\Domain\Interfaces\Image;
 use Watermarker\Domain\Interfaces\PDFFile;
 use Watermarker\Domain\ValueObjects\Coordinates;
-use Watermarker\Domain\ValueObjects\PositionEnum;
- 
+
 class FPDIFile implements PDFFile
 {
 
@@ -36,17 +35,17 @@ class FPDIFile implements PDFFile
     {
         $templateId = $this->tmpPDF->importPage($pageNumber);
         $templateDimension = $this->tmpPDF->getTemplateSize($templateId);
-        $orientation=$this->getOrientation($templateDimension);
+        $orientation = $this->getOrientation($templateDimension);
 
-        $watermarkDimension=$watermark->getMMDimensions();
+        $watermarkDimension = $watermark->getMMDimensions();
         $this->tmpPDF->addPage($orientation, array($templateDimension['width'], $templateDimension['height']));
-        $coordinates =new Coordinates($position,
+        $coordinates = new Coordinates($position,
             $templateDimension['width'],
             $templateDimension['height'],
             $watermarkDimension[0],
             $watermarkDimension[1]);
 
-     
+
         if ($asBackground) {
             $this->tmpPDF->Image($watermark->getFilePath(), $coordinates->getX(), $coordinates->getY(), -96);
             $this->tmpPDF->useTemplate($templateId);
@@ -54,9 +53,10 @@ class FPDIFile implements PDFFile
             $this->tmpPDF->useTemplate($templateId);
             $this->tmpPDF->Image($watermark->getFilePath(), $coordinates->getX(), $coordinates->getY(), -96);
         }
-       
+
     }
-    private function getOrientation(array $templateDimension):string 
+
+    private function getOrientation(array $templateDimension): string
     {
         if ($templateDimension['width'] > $templateDimension['height']) {
             $orientation = "L";
@@ -65,31 +65,32 @@ class FPDIFile implements PDFFile
         }
         return $orientation;
     }
-    private function notWatermarkPage(int $pageNumber):void
-    {   
-   
-    
-    
+
+    private function notWatermarkPage(int $pageNumber): void
+    {
+
+
         $templateId = $this->tmpPDF->importPage($pageNumber);
-        
+
         $templateDimension = $this->tmpPDF->getTemplateSize($templateId);
-        $orientation=$this->getOrientation($templateDimension);
+        $orientation = $this->getOrientation($templateDimension);
         $this->tmpPDF->addPage($orientation, array($templateDimension['width'], $templateDimension['height']));
         $this->tmpPDF->useTemplate($templateId);
     }
-    
-    public function watermarkAll(Image $imageWatermark,string $position, bool $asBackground):void
+
+    public function watermarkAll(Image $imageWatermark, string $position, bool $asBackground): void
     {
-        $this->watermarkRange(1,$this->totalPages,$imageWatermark,$position,$asBackground);
+        $this->watermarkRange(1, $this->totalPages, $imageWatermark, $position, $asBackground);
     }
-    public function watermarkRange(int $start, int $end,Image $imageWatermark,string $position, bool $asBackground):void
+
+    public function watermarkRange(int $start, int $end, Image $imageWatermark, string $position, bool $asBackground): void
     {
-        
+
 
         $end = $end !== null ? $end : $this->totalPages;
         $specificPages = range($start, $end);
         for ($ctr = 1; $ctr <= $this->totalPages; $ctr++) {
-          
+
             if (in_array($ctr, $specificPages) || empty($specificPages)) {
                 $this->watermarkPage($ctr, $imageWatermark, $position, $asBackground);
             } else {

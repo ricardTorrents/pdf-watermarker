@@ -3,8 +3,8 @@
 namespace Watermarker\Infraestructure\Controllers;
 
 use Watermarker\Application\InsertWatermarkToPageRange;
-use Watermarker\Domain\ValueObjects\PositionEnum;
 use Watermarker\Domain\Factory\ImageWatermarkFactory;
+use Watermarker\Domain\ValueObjects\PositionEnum;
 use Watermarker\Infraestructure\FPDI\FPDIRepository;
 
 class InsertWatermarkToPageRangeController

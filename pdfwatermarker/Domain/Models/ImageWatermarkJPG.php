@@ -3,12 +3,11 @@
 namespace Watermarker\Domain\Models;
 
 use InvalidArgumentException;
-use Watermarker\Domain\Models\ImageWatermark;
 
 class ImageWatermarkJPG extends ImageWatermark
 {
     const IMAGETYPE_JPG = 2;
-    
+
     public function prepareImage(string $filePath): string
     {
         $imagetype = exif_imagetype($filePath);

@@ -3,9 +3,10 @@
 
 namespace Watermarker\Infraestructure\FPDI;
 
+use InvalidArgumentException;
 use Watermarker\Domain\Interfaces\PDFFile;
 use Watermarker\Domain\Interfaces\PDFRepository;
-use InvalidArgumentException;
+
 class FPDIRepository implements PDFRepository
 {
 

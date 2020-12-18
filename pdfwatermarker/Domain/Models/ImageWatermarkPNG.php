@@ -1,8 +1,8 @@
 <?php
 
 namespace Watermarker\Domain\Models;
+
 use InvalidArgumentException;
-use Watermarker\Domain\Models\ImageWatermark;
 
 class ImageWatermarkPNG extends ImageWatermark
 {
