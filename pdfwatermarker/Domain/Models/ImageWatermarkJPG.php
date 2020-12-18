@@ -2,6 +2,7 @@
 
 namespace Watermarker\Domain\Models;
 
+use InvalidArgumentException;
 use Watermarker\Domain\Models\ImageWatermark;
 
 class ImageWatermarkJPG extends ImageWatermark

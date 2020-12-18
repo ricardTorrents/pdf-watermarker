@@ -49,4 +49,10 @@ class ImageWatermarkTest extends TestCase
        
         $this->assertTrue(count(array_diff($this->watermarkPNG->getMMDimensions(), array(52.916666666667, 52.916666666667))) === 0);
     }
+
+    public function invalidImageType()
+    {
+        $input = $this->assetsDirectory . "star.tif";
+        $this->assertTrue(new ImageWatermarkPNG($input)==="InvalidArgumentException: Unsupported image type");
+    }
 }

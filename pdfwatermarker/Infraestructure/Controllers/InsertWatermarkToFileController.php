@@ -9,7 +9,7 @@ use Watermarker\Infraestructure\FPDI\FPDIRepository;
 
 class InsertWatermarkToFileController
 {
-    private $repository;
+    private FPDIRepository $repository;
 
     public function __construct()
     {

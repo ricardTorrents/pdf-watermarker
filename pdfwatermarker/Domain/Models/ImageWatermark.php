@@ -10,7 +10,7 @@ abstract class ImageWatermark implements Image
     protected string $file;
     protected float $height;
     protected float $width;
-    private const IMAGE_DPI = 96;
+    private const DPI = 96;
     private const DPI_TO_MM = 25.4;
 
     public function __construct(string $filePath)
@@ -47,8 +47,8 @@ abstract class ImageWatermark implements Image
     public function getMMDimensions(): array
     {
         return array(
-            ($this->width / self::IMAGE_DPI) * self::DPI_TO_MM,
-            ($this->height / self::IMAGE_DPI) * self::DPI_TO_MM,
+            ($this->width / self::DPI) * self::DPI_TO_MM,
+            ($this->height / self::DPI) * self::DPI_TO_MM,
         );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Watermarker\Domain\Factory;
 
-use Exception;
+use InvalidArgumentException;
 use Watermarker\Domain\Interfaces\Image;
 use Watermarker\Domain\Models\ImageWatermarkJPG;
 use Watermarker\Domain\Models\ImageWatermarkPNG;
