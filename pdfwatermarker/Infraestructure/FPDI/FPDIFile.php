@@ -32,12 +32,6 @@ class FPDIFile implements PDFFile
         return $this->tmpPDF->Output("S");
     }
 
-
-    // Separar dos funciones una para insertar con watermark y la otra para insertar sin watermark
-
-    // funcion privada para obtener coordenadas
-  
-   
     private function watermarkPage(int $pageNumber, Image $watermark, string $position, bool $asBackground)
     {
         $templateId = $this->tmpPDF->importPage($pageNumber);

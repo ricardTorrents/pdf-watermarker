@@ -21,10 +21,6 @@ class InsertWatermarkToFile
         $this->imageWatermark=$imageWatermark;
     }
 
-
-  // Crear un caso de uso para cada una de las funciones.
-  // ImageWatermarker passar como colaborador.
-
     public function execute(string $inputPath,
                             string $outputPath,
                             string $position = PositionEnum::CENTER,

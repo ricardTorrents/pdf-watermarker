@@ -12,16 +12,13 @@ use Watermarker\Domain\Interfaces\Image;
 class InsertWatermarkToPageRange
 {
     private PDFRepository $repo;
+    private Image $imageWatermark;
 
     public function __construct(PDFRepository $repo,Image $imageWatermark)
     {
         $this->repo = $repo;
         $this->imageWatermark=$imageWatermark;
     }
-
-
-  // Crear un caso de uso para cada una de las funciones.
-  // ImageWatermarker passar como colaborador.
 
     public function execute(string $inputPath,
                              string $outputPath,
